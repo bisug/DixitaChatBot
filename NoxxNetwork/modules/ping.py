@@ -9,7 +9,7 @@ from pyrogram.enums import ParseMode
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 from config import IMG
-from NoxxNetwork import app
+from NoxxNetwork import @NoxxBot
 from NoxxNetwork.modules.helpers import PNG_BTN
 
 start_time = datetime.now()
@@ -27,7 +27,7 @@ def status_emoji(percent):
     return "🟢" if percent < 50 else "🟡" if percent < 80 else "🔴"
 
 
-@app.on_message(filters.command("ping"))
+@NoxxBot.on_message(filters.command("ping"))
 async def ping(client, message: Message):
     # Measure message latency
     start = time.perf_counter()
