@@ -1,15 +1,15 @@
 import asyncio
 import importlib
+import subprocess
 
 from pyrogram import idle
 
 from NoxxNetwork import LOGGER, NoxxBot
 from NoxxNetwork.modules import ALL_MODULES
+from config import WEB_APP
 
-import subprocess
-from config import WEB_APP   
-  if WEB_APP:
-        subprocess.Popen(['python3', 'web.py'])
+if WEB_APP:
+    subprocess.Popen(['python3', 'web.py'])
 
 async def anony_boot():
     try:
@@ -23,7 +23,6 @@ async def anony_boot():
 
     LOGGER.info(f"@{NoxxBot.username} Started.")
     await idle()
-
 
 if __name__ == "__main__":
     asyncio.get_event_loop().run_until_complete(anony_boot())
