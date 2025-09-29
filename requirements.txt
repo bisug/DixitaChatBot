@@ -1,6 +1,6 @@
 Abg==2.3.1
 flask
-pyrofork 
+pyrogram 
 pymongo
 motor
 requests
