@@ -6,6 +6,10 @@ from pyrogram import idle
 from NoxxNetwork import LOGGER, NoxxBot
 from NoxxNetwork.modules import ALL_MODULES
 
+import subprocess
+from config import WEB_APP   
+  if WEB_APP:
+        subprocess.Popen(['python3', 'web.py'])
 
 async def anony_boot():
     try:
