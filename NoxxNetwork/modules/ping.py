@@ -1,36 +1,66 @@
+import platform
+import psutil
 import random
+import time
 from datetime import datetime
 
 from pyrogram import filters
-from pyrogram.enums import ChatType
+from pyrogram.enums import ParseMode
 from pyrogram.types import InlineKeyboardMarkup, Message
 
-from config import IMG, OWNER_USERNAME, STICKER
-from NoxxNetwork import NoxxBot
-from NoxxNetwork.database.chats import add_served_chat
-from NoxxNetwork.database.users import add_served_user
+from config import IMG
+from NoxxNetwork import app
 from NoxxNetwork.modules.helpers import PNG_BTN
 
+start_time = datetime.now()
+process = psutil.Process()
 
-@NoxxBot.on_cmd("ping")
-async def ping(_, message: Message):
-    await message.reply_sticker(sticker=random.choice(STICKER))
-    start = datetime.now()
-    loda = await message.reply_photo(
-        photo=random.choice(IMG),
-        caption="ᴘɪɴɢɪɴɢ...",
+
+def format_uptime(delta):
+    days = delta.days
+    hours, remainder = divmod(delta.seconds, 3600)
+    minutes, seconds = divmod(remainder, 60)
+    return (f"{days}d " if days else "") + f"{hours:02}h {minutes:02}m {seconds:02}s"
+
+
+def status_emoji(percent):
+    return "🟢" if percent < 50 else "🟡" if percent < 80 else "🔴"
+
+
+@app.on_message(filters.command("ping"))
+async def ping(client, message: Message):
+    # Measure message latency
+    start = time.perf_counter()
+    sent = await message.reply("📡 Pinging...")
+    msg_ping = (time.perf_counter() - start) * 1000
+    await sent.delete()
+
+    # Uptime
+    uptime = format_uptime(datetime.now() - start_time)
+
+    # System Stats
+    ram = psutil.virtual_memory()
+    cpu = psutil.cpu_percent(interval=0.5)  
+    # Bot Process Stats
+    with process.oneshot():
+        proc_mem = process.memory_info().rss / (1024**2)  # MB
+        threads = process.num_threads()
+
+    caption = (
+        f"✨ **System Status** ✨\n\n"
+        f"📡 **Ping:** `{msg_ping:.2f} ms`\n"
+        f"⏳ **Uptime:** `{uptime}`\n\n"
+        f"🧠 **RAM:** `{ram.percent}%` {status_emoji(ram.percent)}\n"
+        f"🖥️ **CPU:** `{cpu}%` {status_emoji(cpu)}\n\n"
+        f"⚙️ **Bot Memory:** `{proc_mem:.2f} MB`\n"
+        f"🧵 **Threads:** `{threads}`\n\n"
+        f"🧰 **OS:** `{platform.system()} {platform.release()}`\n"
+        f"🐍 **Python:** `{platform.python_version()}`\n"
     )
-    try:
-        await message.delete()
-    except:
-        pass
 
-    ms = (datetime.now() - start).microseconds / 1000
-    await loda.edit_text(
-        text=f"нey вαву!!\n{NoxxBot.name} ιѕ alιve 🥀 αnd worĸιng ғιne wιтн a pιng oғ\n➥ `{ms}` ms\n\n<b>|| мαdє ωιтн ❣️ ву {OWNER_USERNAME} ||</b>",
+    await message.reply_photo(
+        photo=random.choice(IMG),
+        caption=caption,
+        parse_mode=ParseMode.MARKDOWN,
         reply_markup=InlineKeyboardMarkup(PNG_BTN),
     )
-    if message.chat.type == ChatType.PRIVATE:
-        await add_served_user(message.from_user.id)
-    else:
-        await add_served_chat(message.chat.id)
