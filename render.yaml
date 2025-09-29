@@ -1,0 +1,6 @@
+  - type: worker
+    name: NoxxBot 
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python3 -m NoxxNetwork
+    autoDeploy: true 
