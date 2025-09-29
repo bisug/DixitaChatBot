@@ -19,13 +19,8 @@ start_txt = """<b>
 </b>"""
 
 repo_buttons = [
-    [InlineKeyboardButton("⋆ ᴍᴜsɪᴄ + ᴍᴀɴᴀɢᴇᴍᴇɴᴛ ⋆", url="http://github.com/NoxxOP/ShrutiMusicPost")],
-    [InlineKeyboardButton("⋆ ᴍᴜsɪᴄ ⋆", url="http://github.com/NoxxOP/ShrutixMusicPost")],
-    [InlineKeyboardButton("⋆ ᴄʜᴀᴛʙᴏᴛ ⋆", url="http://github.com/NoxxOP/ChatBotPost")],
-    [InlineKeyboardButton("⋆ ɴᴏʀᴍᴀʟ ᴄʜᴀᴛʙᴏᴛ ⋆", url="http://github.com/NoxxOP/NormalChatBotPost")],
-    [InlineKeyboardButton("⋆ ғɪʟᴇ sᴛᴏʀᴇ ⋆", url="https://github.com/NoxxOP/FilestorePost")],
-    [InlineKeyboardButton("⋆ ᴡᴀɪғᴜ ᴄᴀᴛᴄʜᴇʀ ⋆", url="https://github.com/NoxxOP/NoxxWaifu")],
-    [InlineKeyboardButton("⋆ ᴄᴏᴍᴍᴜɴɪᴛʏ ⋆", url="https://t.me/ShrutiBots")],
+    [InlineKeyboardButton("⋆ ɴᴏʀᴍᴀʟ ᴄʜᴀᴛʙᴏᴛ ⋆", url="https://github.com/bisug/DixitaChatBot")],
+    [InlineKeyboardButton("⋆ ᴄᴏᴍᴍᴜɴɪᴛʏ ⋆", url="https://t.me/dear_sumi")],
 ]
 
 
