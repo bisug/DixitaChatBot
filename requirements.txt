@@ -9,3 +9,4 @@ tgcrypto
 asyncio
 python-dotenv
 gtts
+psutil
