@@ -33,16 +33,16 @@ def get_random_database_reply(chatai):
         
         if all_replies:
             chosen = random.choice(all_replies)
-            return chosen["text"], chosen.get("check", "none")
+            return chosen["text"]
         else:
-            return None, None
+            return None
     except Exception as e:
         print(f"Error getting random reply: {e}")
-        return None, None
+        return None
 
 
 @NoxxBot.on_message(
-    (filters.text | filters.sticker | filters.group) & ~filters.private & ~filters.bot, group=4
+    (filters.text | filters.group) & ~filters.private & ~filters.bot, group=4
 )
 async def chatbot_universal(client: Client, message: Message):
     global chat_previous_messages
@@ -75,21 +75,14 @@ async def chatbot_universal(client: Client, message: Message):
         # Reply to a message - save word-reply pair
         word = None
         reply_text = None
-        reply_check = "none"
         
         # Get the word (what was replied to)
         if message.reply_to_message.text:
             word = message.reply_to_message.text
-        elif message.reply_to_message.sticker:
-            word = message.reply_to_message.sticker.file_unique_id
             
         # Get the reply
         if message.text:
             reply_text = message.text
-            reply_check = "none"
-        elif message.sticker:
-            reply_text = message.sticker.file_id
-            reply_check = "sticker"
             
         # Save to database
         if word and reply_text:
@@ -98,8 +91,7 @@ async def chatbot_universal(client: Client, message: Message):
                 if not existing:
                     chatai.insert_one({
                         "word": word,
-                        "text": reply_text,
-                        "check": reply_check
+                        "text": reply_text
                     })
             except Exception as e:
                 print(f"Database error: {e}")
@@ -111,21 +103,14 @@ async def chatbot_universal(client: Client, message: Message):
             
             word = None
             reply_text = None
-            reply_check = "none"
             
             # Get previous word
             if prev_msg.get("type") == "text":
-                word = prev_msg.get("content")
-            elif prev_msg.get("type") == "sticker":
                 word = prev_msg.get("content")
                 
             # Get current reply
             if message.text:
                 reply_text = message.text
-                reply_check = "none"
-            elif message.sticker:
-                reply_text = message.sticker.file_id
-                reply_check = "sticker"
                 
             # Save word-reply pair
             if word and reply_text:
@@ -134,8 +119,7 @@ async def chatbot_universal(client: Client, message: Message):
                     if not existing:
                         chatai.insert_one({
                             "word": word,
-                            "text": reply_text,
-                            "check": reply_check
+                            "text": reply_text
                         })
                 except Exception as e:
                     print(f"Database error: {e}")
@@ -145,12 +129,6 @@ async def chatbot_universal(client: Client, message: Message):
         chat_previous_messages[chat_id] = {
             "type": "text",
             "content": message.text,
-            "user_id": message.from_user.id
-        }
-    elif message.sticker:
-        chat_previous_messages[chat_id] = {
-            "type": "sticker", 
-            "content": message.sticker.file_unique_id,
             "user_id": message.from_user.id
         }
     
@@ -164,8 +142,6 @@ async def chatbot_universal(client: Client, message: Message):
             should_respond = True
             if message.text:
                 search_word = message.text
-            elif message.sticker:
-                search_word = message.sticker.file_unique_id
                 
         elif not message.reply_to_message:
             # Direct message - respond randomly or if bot mentioned
@@ -178,11 +154,6 @@ async def chatbot_universal(client: Client, message: Message):
                     if random.randint(1, 10) == 1:
                         should_respond = True
                         search_word = message.text
-            elif message.sticker:
-                # Random response to stickers (5% chance)
-                if random.randint(1, 20) == 1:
-                    should_respond = True
-                    search_word = message.sticker.file_unique_id
         
         if should_respond and search_word:
             await client.send_chat_action(message.chat.id, ChatAction.TYPING)
@@ -197,39 +168,23 @@ async def chatbot_universal(client: Client, message: Message):
             if responses:
                 # Found exact match
                 reply = random.choice(responses)
-                # Find the check type for this reply
-                reply_data = chatai.find_one({"word": search_word, "text": reply})
-                
                 try:
-                    if reply_data and reply_data.get("check") == "sticker":
-                        await message.reply_sticker(reply)
-                    else:
-                        await message.reply_text(reply)
+                    await message.reply_text(reply)
                 except Exception:
-                    # Fallback to text if sticker fails
-                    try:
-                        await message.reply_text(reply)
-                    except:
-                        pass
+                    pass
             else:
                 # No exact match found, get random reply from database
-                random_reply, check_type = get_random_database_reply(chatai)
+                random_reply = get_random_database_reply(chatai)
                 
                 if random_reply:
                     try:
-                        if check_type == "sticker":
-                            await message.reply_sticker(random_reply)
-                        else:
-                            await message.reply_text(random_reply)
+                        await message.reply_text(random_reply)
                     except Exception:
-                        try:
-                            await message.reply_text(random_reply)
-                        except:
-                            pass
+                        pass
 
 
 @NoxxBot.on_message(
-    filters.private & (filters.text | filters.sticker) & ~filters.bot, group=5
+    filters.private & filters.text & ~filters.bot, group=5
 )
 async def chatbot_private(client: Client, message: Message):
     """Handle private messages - always respond"""
@@ -253,8 +208,6 @@ async def chatbot_private(client: Client, message: Message):
     search_word = None
     if message.text:
         search_word = message.text
-    elif message.sticker:
-        search_word = message.sticker.file_unique_id
     
     if search_word:
         # First try to find exact match
@@ -264,24 +217,18 @@ async def chatbot_private(client: Client, message: Message):
             # Found exact match
             chosen = random.choice(responses)
             try:
-                if chosen.get("check") == "sticker":
-                    await message.reply_sticker(chosen["text"])
-                else:
-                    await message.reply_text(chosen["text"])
-            except Exception:
                 await message.reply_text(chosen["text"])
+            except Exception:
+                pass
         else:
             # No exact match, get random reply from database
-            random_reply, check_type = get_random_database_reply(chatai)
+            random_reply = get_random_database_reply(chatai)
             
             if random_reply:
                 try:
-                    if check_type == "sticker":
-                        await message.reply_sticker(random_reply)
-                    else:
-                        await message.reply_text(random_reply)
-                except Exception:
                     await message.reply_text(random_reply)
+                except Exception:
+                    pass
 
 
 @NoxxBot.on_cmd("chatstats")
@@ -292,15 +239,12 @@ async def chatbot_stats(_, message: Message):
         chatai = chatdb["Word"]["WordDb"]
         
         total_words = chatai.count_documents({})
-        text_replies = chatai.count_documents({"check": "none"})
-        sticker_replies = chatai.count_documents({"check": "sticker"})
         
         stats_text = f"""
 📊 **Universal Chatbot Stats**
 
 🧠 Total Learned Words: `{total_words}`
-💬 Text Responses: `{text_replies}`
-🎭 Sticker Responses: `{sticker_replies}`
+💬 Text Responses: `{total_words}`
 
 ✨ **Learning:** Active everywhere
 🌍 **Scope:** Universal (all chats)
