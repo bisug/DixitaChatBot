@@ -9,7 +9,7 @@ from pyrogram.enums import ParseMode
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 from config import IMG
-from NoxxNetwork import @NoxxBot
+from NoxxNetwork import NoxxBot
 from NoxxNetwork.modules.helpers import PNG_BTN
 
 start_time = datetime.now()
