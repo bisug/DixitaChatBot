@@ -1,5 +1,6 @@
-  - type: worker
-    name: NoxxBot 
+  - type: web
+    plan: free 
+    name: Dixita Chat Bot
     runtime: python
     buildCommand: pip install -r requirements.txt
     startCommand: python3 -m NoxxNetwork
