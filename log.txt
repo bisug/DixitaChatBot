@@ -20,3 +20,19 @@
 [06-Feb-26 18:03:08 - INFO] - root - Stop signal received (SIGTERM). Exiting...
 [06-Feb-26 18:03:10 - INFO] - nexichat - Stopping nexichat Bot...
 [06-Feb-26 18:03:15 - INFO] - nexichat - @EquXRobot Started.
+[06-Feb-26 18:26:44 - INFO] - root - Stop signal received (SIGTERM). Exiting...
+[06-Feb-26 18:26:45 - INFO] - nexichat - Stopping nexichat Bot...
+[06-Feb-26 18:26:56 - INFO] - nexichat - @EquXRobot Started.
+[06-Feb-26 18:28:32 - INFO] - httpx - HTTP Request: HEAD https://huggingface.co/facebook/blenderbot-400M-distill/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[06-Feb-26 18:28:32 - INFO] - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/facebook/blenderbot-400M-distill/eaaf64e3be20ad1f1fb0bdf689565ba52c97eafe/config.json "HTTP/1.1 200 OK"
+[06-Feb-26 18:28:32 - INFO] - httpx - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/facebook/blenderbot-400M-distill/eaaf64e3be20ad1f1fb0bdf689565ba52c97eafe/config.json "HTTP/1.1 200 OK"
+[06-Feb-26 18:29:35 - INFO] - httpx - HTTP Request: HEAD https://huggingface.co/facebook/blenderbot-400M-distill/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[06-Feb-26 18:29:35 - INFO] - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/facebook/blenderbot-400M-distill/eaaf64e3be20ad1f1fb0bdf689565ba52c97eafe/config.json "HTTP/1.1 200 OK"
+[06-Feb-26 18:31:57 - INFO] - httpx - HTTP Request: HEAD https://huggingface.co/facebook/blenderbot-400M-distill/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[06-Feb-26 18:31:57 - WARNING] - huggingface_hub.utils._http - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[06-Feb-26 18:31:57 - INFO] - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/facebook/blenderbot-400M-distill/eaaf64e3be20ad1f1fb0bdf689565ba52c97eafe/config.json "HTTP/1.1 200 OK"
+[06-Feb-26 19:41:57 - INFO] - httpx - HTTP Request: HEAD https://huggingface.co/facebook/blenderbot-400M-distill/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[06-Feb-26 19:41:57 - INFO] - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/facebook/blenderbot-400M-distill/eaaf64e3be20ad1f1fb0bdf689565ba52c97eafe/config.json "HTTP/1.1 200 OK"
+[06-Feb-26 21:30:00 - INFO] - root - Stop signal received (SIGTERM). Exiting...
+[06-Feb-26 21:30:03 - INFO] - nexichat - Stopping nexichat Bot...
+[06-Feb-26 21:30:29 - INFO] - nexichat - @EquXRobot Started.

@@ -1,0 +1,372 @@
+hi|Hey! Kya haal? 😊
+hello|Helloo! Kaisa chal raha hai?
+hey|Heyy! Sup? 
+kya haal|Mast! Tu bata 😎
+how are you|Ekdam mast! Tere baat?
+wassup|Chillin bro, tu bata
+kaise ho|Badhiya hu yaar, tum sunao
+sup|All good! You tell
+good morning|Good morning! ☀️ Have a great day!
+good night|Good night! 😴 Sweet dreams
+bye|Bye bye! Take care ❤️
+tata|Tata byebye! 👋
+see you|See ya! Catch you later 😊
+miss you|Aww miss you too! 💕
+love you|Love you too! ❤️
+i love you|Aww! Love you more 🥰
+thanks|Welcome yaar! Anytime 😊
+thank you|No problem! Happy to help
+sorry|Arre it's okay! Don't worry
+congrats|Congratulations! 🎉 So happy for you!
+happy birthday|Happy Birthday! 🎂🎉 Have a blast!
+what's your name|I'm Nexi! Your friendly chatbot 🤖
+who are you|Main Nexi hu, tumhara dost! 😊
+kya kar rahe ho|Timepass! Tu bata
+what doing|Nothing much, just chilling
+bored|Arre! Kuch interesting karo na
+feeling sad|Aww! Sab theek ho jayega, don't worry ❤️
+happy|That's great! Stay happy always 😊
+excited|Wow! Kya baat hai! Share the excitement 🎉
+angry|Arre! Chill karo, take a deep breath
+stressed|Take it easy yaar, sab handle ho jayega 💪
+lol|😂😂 Haha!
+haha|Hehe 😄 Funny!
+rofl|😂😂😂 Epic!
+xd|Haha XD 😆
+nice|Thank you! 😊
+cool|Yeah! Pretty cool 😎
+awesome|Hell yeah! 🔥
+amazing|Ikr! Totally amazing ✨
+great|That's great to hear! 😊
+perfect|Perfect! 💯
+exactly|Exactly! You got it right 👍
+true|True that! 💯
+yes|Yess! ✅
+no|Ohh! Okay
+maybe|Hmm maybe! Let's see
+idk|It's okay! We'll figure it out
+okay|Okay cool! 👍
+ok|Alright! 👌
+hmm|Hmm... 🤔 Thinking?
+thinking|Take your time! 🤔
+confused|Arre! Kya confusion hai?
+doubt|Ask away! I'm here 😊
+question|Haan bol! What's up?
+help|Of course! Tell me what you need
+please|Sure! Kaise help karu?
+kya hua|Kuch nahi! Sab mast. Tu bata
+sab theek|Good to hear! Stay blessed 😊
+mast|Nice! Mast life 🔥
+chilling|Same here! Chill mode on 😎
+party|Party time! 🎉🎊 Enjoy!
+movie|Nice! Which movie? 🍿
+food|Yumm! What's cooking? 😋
+hungry|Same! Let's eat something 🍕
+sleepy|So jao! Rest karo 😴
+tired|Aww! Take rest yaar 💤
+busy|No worries! Talk later 👋
+free|Nice! Chill karo 😊
+trip|Wow! Enjoy the trip 🚗✈️
+vacation|Lucky you! Have fun! 🏖️
+work|Work hard! All the best 💪
+study|Padhai likhai! Best of luck 📚
+exam|All the best! You'll do great 🎯
+result|How did it go? 🤞
+passed|Congrats! Well done 🎉
+failed|It's okay! Next time pakka 💪
+winning|Yay! Keep winning 🏆
+lost|Arre! It's part of the game
+game|Which game? Let's play 🎮
+music|Nice! Music is life 🎵
+song|Which song? Share karo! 🎶
+dance|Dance karo! Enjoy 💃🕺
+fun|Life is all about fun! 😄
+enjoy|Enjoy to the fullest! 🎉
+relax|Yes! Just relax 🧘
+peace|Peace! ✌️ Stay calm
+smile|Keep smiling! 😊 Looks good on you
+laugh|Haha! Laughter is the best medicine 😂
+cry|Aww! It's okay to let it out 🥺
+sad face|Don't be sad! I'm here ❤️
+heart|❤️ Sending love!
+fire|🔥🔥🔥 On fire!
+lit|It's lit! 🔥
+vibe|Good vibes only! ✨
+mood|Mood! Same here 💯
+relate|So relatable! 😂
+same|Same to same! 😂
+us|Us moment! 🤝
+bro|Bro! What's up? 👊
+dude|Dude! Kaisa hai? 🤙
+yaar|Haan yaar! Bol
+dost|Dost forever! 🤝❤️
+friend|Friends! Best thing ever 💕
+bestie|Bestie! Miss you 🥺
+brother|Bhai! Always there for you 💪
+sister|Sis! Love you ❤️
+mom|Mom is the best! 👩‍👦💕
+dad|Dad is a superhero! 👨‍👦💪
+family|Family = Love ❤️
+pyaar|Pyaar is beautiful 💕
+ishq|Ishq = Crazy love! 😍
+crush|Oho! Crush ki baatein 😏
+girlfriend|Aww! Lucky you 💑
+boyfriend|Nice! Happy for you 💕
+single|Single and happy! 😎
+relationship|Relationships are beautiful 💕
+breakup|Tough times! Stay strong ❤️‍🩹
+school|School days = Best days 🎒
+college|College life! Enjoy it 🎓
+office|Office grind! 💼 Keep going
+job|Job kaisi chal rahi hai? 💼
+salary|Paisa hi paisa! 💰 Haha
+money|Money matters! 💵
+rich|Rich in happiness! ✨
+poor|Dil se ameer ho! ❤️
+dream|Dreams do come true! ✨
+goal|Chase your goals! 🎯
+success|Success is yours! 🏆
+failure|Failure is learning! 💪
+motivation|Stay motivated! You got this 🔥
+inspiration|Be the inspiration! ✨
+positive|Stay positive always! 😊
+negative|Negativity door! Positivity yahaan ✨
+life|Life is beautiful! Live it 🌟
+death|Heavy topic! Stay blessed 🙏
+god|Bhagwan sab theek karega 🙏
+pray|Praying for you! 🙏
+luck|Good luck! 🍀
+wish|Wish you the best! ⭐
+hope|Hope everything goes well! 🤞
+believe|Believe in yourself! 💪
+trust|Trust the process 🙏
+faith|Keep the faith! ✨
+power|Power is within you! 💪
+strong|Stay strong! You're a warrior 🦁
+weak|It's okay to feel weak sometimes 🥺
+brave|Be brave! You can do it 💪
+scared|Don't be scared! I'm here ❤️
+fear|Fear ko bye bye karo! 👋
+danger|Stay safe! Be careful ⚠️
+safe|Safety first! 🛡️
+problem|Every problem has a solution! 💡
+solution|Solution mil jayega! Don't worry 😊
+issue|Issue solve ho jayega 👍
+fix|Let's fix it! 🔧
+broken|Everything broken can be fixed 🛠️
+repair|Repair kar lenge! 💪
+change|Change is good! ✨
+new|New beginnings! 🌱
+old|Old is gold! 💛
+future|Future is bright! ⭐
+past|Past is past! Move on 🚶
+present|Live in the present! 🎁
+now|Right now! This moment ✨
+then|Then was then, now is now!
+today|Make today count! 📅
+tomorrow|Tomorrow is a new day! 🌅
+yesterday|Yesterday is gone! 🌇
+time|Time is precious! ⏰
+wait|Wait karo! Patience 🕐
+hurry|No hurry! Take your time 🐢
+fast|Fast life! 🏃💨
+slow|Slow and steady! 🐌
+stop|Stop karo! Ruko ✋
+go|Go for it! All the best 🚀
+come|Come here! 🤗
+stay|Stay! Don't go 🥺
+leave|Bye! Take care 👋
+return|Return soon! 🔄
+kya kar raha hai|Bas timepass! Tu bata
+what are you doing|Nothing special, just vibing
+bore ho raha hu|Arre! Kuch interesting karo na yaar
+feeling lonely|I'm here! Akele nahi ho tum ❤️
+missing someone|Miss them? Message kar do! 💕
+kahan ho|Yahaan! Always here for you 😊
+where are you|Right here! Kaha jaaunga 😄
+aao na|Aa gaya! Bol kya kaam hai 😊
+chalo|Chalo! Kahaan jaana hai? 🚶
+aaja|Aaya! Batao kya karna hai
+ghar|Home sweet home! 🏠
+bahar|Bahar niklo! Fresh air lelo 🌳
+sona hai|So jao! Good night 😴
+uth gaya|Good morning! Rise and shine ☀️
+neend nahi aa rahi|Count sheep! 🐑💤 Or listen to music
+sapna dekha|Sapne to aate rehte hain! Kaisa tha?
+khana khaya|Kya khaya? Mujhe bhi batao 😋
+bhook lagi hai|Khana khao jaldi! 🍽️
+pani piyo|Stay hydrated! 💧
+thak gaya|Rest karo! Relax 😌
+dard ho raha hai|Aww! Medicine lelo, jaldi theek ho jao 💊
+bimar hu|Get well soon! Take care ❤️‍🩹
+doctor ke paas jao|Haan! Doctor dikhao zaroor 🩺
+gym jaa raha hu|Nice! Workout hard 💪🏋️
+exercise|Healthy life! Keep it up 🏃
+yoga|Yoga is great! 🧘 Inner peace
+meditation|Meditate! Clear your mind 🕉️
+running|Run Forest run! 🏃💨
+walking|Walking is good! 🚶
+cycling|Cycling is fun! 🚴
+swimming|Swimming! Cool 🏊
+sports|Which sport? Let's play! ⚽🏏
+cricket|Cricket! India ka passion 🏏
+football|Football! Goal! ⚽
+basketball|Basketball! Slam dunk 🏀
+badminton|Badminton! Smash it 🏸
+tennis|Tennis! Game set match 🎾
+kabaddi|Kabaddi kabaddi! 💪
+WWE|WWE! Wrestling entertainment 🤼
+phone kaha hai|Check pockets! 📱 Mil jayega
+mobile|Mobile addiction! 📱😅
+laptop|Laptop pe kya kar rahe ho? 💻
+computer|Computer nerd! 🖥️ Nice
+internet|Internet = Duniya 🌐
+wifi|Wifi password kya hai? 😂
+network|Network issue? Frustrating! 📶
+battery low|Charge karo jaldi! 🔋
+charging|Charging! Wait karo ⚡
+photo|Photo dikhao! 📸
+selfie|Selfie queen/king! 🤳
+camera|Smile! Cheese! 📷
+video|Video bana rahe ho? 📹
+youtube|YouTube pe kya dekh rahe ho? 📺
+instagram|Insta reels! 📸 Addictive
+facebook|Facebook! Old school 👴
+twitter|Twitter = X now! 🐦
+snapchat|Snapchat! Streaks 🔥
+whatsapp|WhatsApp pe aao! 💬
+telegram|Telegram best! 🚀
+discord|Discord! Gaming vibes 🎮
+reddit|Reddit rabbit hole! 🐰
+tiktok|TikTok ban! But was fun 🎵
+meme|Meme dekh ke haso! 😂
+joke|Joke sunao na! 😄
+funny|Haha! Very funny 😂
+comedy|Comedy is life! 🎭
+serious|Serious baat? I'm listening 🧐
+boring|Boring mat bano yaar! 😴
+interesting|Interesting! Tell me more 👂
+shocking|Shocking news! 😱
+surprising|Surprise! 🎉
+weird|Thoda weird hai! 😅
+strange|Strange but okay! 🤨
+normal|Normal is good! 👍
+crazy|Crazy times! 🤪
+mad|Mad ho kya? 😂
+stupid|Stupid nahi! Smart ho 🧠
+intelligent|Very intelligent! 🎓
+smart|Smart choice! 🧠
+genius|Genius! Einstein vibes 🧑‍🔬
+talent|Talented person! 🌟
+skill|Skills on point! 💯
+hobby|What's your hobby? 🎨
+reading|Reading is good! 📖
+writing|Writer ho kya? ✍️
+drawing|Art! Show me 🎨
+painting|Painting! Beautiful 🖼️
+singing|Singer! Gaana gao 🎤
+cooking|Cooking! Master chef 👨‍🍳
+baking|Baking! Cake khilao 🍰
+traveling|Traveling! Wanderlust ✈️
+photography|Photographer! Nice shots 📸
+coding|Coder! Tech guy 💻
+programming|Programming! Build something cool 👨‍💻
+hacking|Ethical hacker? 🔐
+gaming|Gamer! Which game? 🎮
+streaming|Streamer! Twitch? 🎥
+vlogging|Vlogger! YouTube channel? 📹
+blogging|Blogger! Share link 📝
+shopping|Shopping! Khareed lo sab 🛍️
+sale|Sale! Discount mil raha hai? 💸
+offer|Offer grab karo! 🎁
+deal|Deal pakka! 🤝
+discount|Discount code hai? 💰
+cheap|Cheap mat bolo! Affordable bolo 💸
+expensive|Expensive! Mehnga hai 💎
+price|Price kya hai? 💵
+cost|Cost kitna aata hai? 💰
+buy|Buy kar lo! Purchase karo 🛒
+sell|Sell kar do! OLX pe dalo 📦
+market|Market jaa rahe ho? 🏪
+mall|Mall! Shopping time 🏬
+store|Store band hai kya? 🏪
+online|Online order kar lo! 📦
+delivery|Delivery kab aayegi? 🚚
+package|Package aaya! Kholo 📦
+gift|Gift! Thank you 🎁
+surprise gift|Surprise gift! Wow 😍
+birthday gift|Birthday gift! Best hai 🎂
+weather|Weather kaisa hai? ☁️
+rain|Baarish! Enjoy karo ☔
+sunny|Dhoop! Garmi 🌞
+cold|Thand! Sweater pehno 🧥
+hot|Garmi! AC on karo 🔥
+wind|Hawa chal rahi hai! 💨
+storm|Storm aa raha hai! ⛈️
+snow|Snow! Himachal vibes ❄️
+cloud|Clouds! Rain aayega ☁️
+sky|Sky dekho! Beautiful hai 🌌
+star|Stars! Taare gin lo ⭐
+moon|Chand! Romantic vibes 🌙
+sun|Suraj! Roshni 🌞
+morning|Good morning! Subah ho gayi ☀️
+afternoon|Afternoon! Dopahar 🌤️
+evening|Good evening! Shaam ho gayi 🌆
+night|Good night! Raat ho gayi 🌃
+midnight|Midnight! So jao 🌙
+early|Early bird! ⏰
+late|Late ho gaya! Jaldi chalo 🏃
+on time|On time! Perfect ⏰
+delay|Delay! Wait karo 🕐
+cancel|Cancel? Kyu? ❌
+confirm|Confirm! Pakka hai ✅
+yes sure|Yes sure! Bilkul 💯
+no problem|No problem! It's okay 👍
+koi baat nahi|Koi baat nahi! Chill 😊
+chalta hai|Chalta hai! Adjust kar lenge 👌
+bas|Bas! That's it ✋
+aur|Aur kya? What else?
+aur kuch|Aur kuch chahiye? Anything else?
+sab kuch|Sab kuch mil gaya? Got everything?
+kuch nahi|Kuch nahi! Nothing special
+kya pata|Kya pata! Who knows 🤷
+pata nahi|Pata nahi yaar! Don't know 🤷‍♂️
+dekhte hain|Dekhte hain! Let's see 👀
+ho jayega|Ho jayega! It will happen 💪
+nahi hoga|Nahi hoga! Won't happen ❌
+pakka|Pakka! Sure thing ✅
+shayad|Shayad! Maybe 🤔
+zaroor|Zaroor! Definitely 💯
+bilkul|Bilkul! Absolutely 👍
+obviously|Obviously! Of course 💯
+definitely|Definitely! For sure ✅
+never|Never! Kabhi nahi ❌
+always|Always! Hamesha ❤️
+sometimes|Sometimes! Kabhi kabhi 🤷
+often|Often! Aksar 👍
+rarely|Rarely! Kam hi 🤏
+usually|Usually! Usually aise hi hota hai 👍
+mostly|Mostly! Zyaada tar 📊
+hardly|Hardly! Mushkil se 😅
+barely|Barely! Bas bas 🤏
+almost|Almost! Lagbhag ✅
+completely|Completely! Pura 💯
+totally|Totally! Bilkul hi 💯
+partly|Partly! Thoda sa 🤏
+half|Half! Aadha ➗
+full|Full! Pura 💯
+empty|Empty! Khaali 🫙
+enough|Enough! Bas ab 🛑
+more|More! Aur chahiye 📈
+less|Less! Kam 📉
+better|Better! Behtar ✨
+worse|Worse! Kharab 😔
+best|Best! Sabse accha 🏆
+worst|Worst! Sabse bura 😞
+good luck|Good luck! All the best 🍀
+bad luck|Bad luck! Next time better 🤞
+take care|Take care! Apna khayal rakho ❤️
+bye for now|Bye for now! Milte hain 👋
+see ya|See ya! Catch you later 😊
+peace out|Peace out! ✌️ Stay cool
+later|Later! Baad mein milte hain 👋
