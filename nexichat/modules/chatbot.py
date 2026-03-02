@@ -4,6 +4,7 @@ from pyrogram.errors import UserNotParticipant
 from pyrogram import Client, filters
 from pyrogram.enums import ChatAction
 from pyrogram.types import InlineKeyboardMarkup, Message
+from pyrogram.errors import FloodWait
 
 from nexichat import app, mongo, redis_db
 
@@ -14,13 +15,11 @@ def adminsOnly(permission):
             try:
                 user = await client.get_chat_member(message.chat.id, message.from_user.id)
                 if user.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR]:
-                    # In a full implementation, you'd check `permission` against `user.privileges`.
-                    # For simplicity, we just check if they are an admin.
                     return await func(client, message)
                 else:
-                    await message.reply_text("Only admins can use this command.")
+                    return
             except UserNotParticipant:
-                await message.reply_text("You are not in this chat.")
+                return
             except Exception as e:
                 print(f"Error in adminsOnly: {e}")
         return wrapper
@@ -133,11 +132,14 @@ async def chatbot_smart(client: Client, message: Message):
                     except:
                         pass
                 
-                # Send response
-                if response_type == "sticker":
-                    await message.reply_sticker(response_text)
-                else:
-                    await message.reply_text(response_text)
+                # Send response gracefully handling FloodWaits
+                try:
+                    if response_type == "sticker":
+                        await message.reply_sticker(response_text)
+                    else:
+                        await message.reply_text(response_text)
+                except FloodWait:
+                    pass
 
     
     # Handle replies to bot
@@ -153,8 +155,11 @@ async def chatbot_smart(client: Client, message: Message):
                     response_text = response_data["text"]
                     response_type = response_data["check"]
                     
-                    if response_type == "sticker":
-                        await message.reply_sticker(response_text)
-                    else:
-                        await message.reply_text(response_text)
+                    try:
+                        if response_type == "sticker":
+                            await message.reply_sticker(response_text)
+                        else:
+                            await message.reply_text(response_text)
+                    except FloodWait:
+                        pass
 

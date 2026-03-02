@@ -18,7 +18,7 @@ async def send_msg(user_id, message: Message):
     try:
         await message.copy(chat_id=user_id)
     except FloodWait as e:
-        await asyncio.sleep(e.value)
+        await asyncio.sleep(e.value + 1)
         return await send_msg(user_id, message)
     except InputUserDeactivated:
         return 400, f"{user_id} : deactivated\n"
@@ -37,7 +37,6 @@ async def broadcast(_, message: Message):
         await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴛᴏ ʙʀᴏᴀᴅᴄᴀsᴛ ɪᴛ.")
         return    
     
-    exmsg = await message.reply_text("sᴛᴀʀᴛᴇᴅ ʙʀᴏᴀᴅᴄᴀsᴛɪɴɢ!")
     all_chats = await get_served_chats() or []
     all_users = await get_served_users() or []
     
@@ -75,11 +74,11 @@ async def broadcast(_, message: Message):
         await asyncio.sleep(0.1)
         
     if failed_users == 0 and failed_chats == 0:
-        await exmsg.edit_text(
+        await message.reply_text(
             f"<b>sᴜᴄᴄᴇssғᴜʟʟʏ ʙʀᴏᴀᴅᴄᴀsᴛɪɴɢ ✅</b>\n\n<b>sᴇɴᴛ ᴍᴇssᴀɢᴇ ᴛᴏ</b> <code>{done_chats}</code> <b>ᴄʜᴀᴛs ᴀɴᴅ</b> <code>{done_users}</code> <b>ᴜsᴇʀs</b>",
         )
     else:
-        await exmsg.edit_text(
+        await message.reply_text(
             f"<b>sᴜᴄᴄᴇssғᴜʟʟʏ ʙʀᴏᴀᴅᴄᴀsᴛɪɴɢ ✅</b>\n\n<b>sᴇɴᴛ ᴍᴇssᴀɢᴇ ᴛᴏ</b> <code>{done_chats}</code> <b>ᴄʜᴀᴛs</b> <code>{done_users}</code> <b>ᴜsᴇʀs</b>\n\n<b>ɴᴏᴛᴇ:-</b> <code>ᴅᴜᴇ ᴛᴏ sᴏᴍᴇ ɪssᴜᴇ ᴄᴀɴ'ᴛ ᴀʙʟᴇ ᴛᴏ ʙʀᴏᴀᴅᴄᴀsᴛ</code> <code>{failed_users}</code> <b>ᴜsᴇʀs ᴀɴᴅ</b> <code>{failed_chats}</code> <b>ᴄʜᴀᴛs</b>",
         )
 
@@ -101,6 +100,12 @@ async def announced(_, message: Message):
         try:
             await app.forward_messages(chat_id=chat_id, from_chat_id=message.chat.id, message_ids=to_send)
             await asyncio.sleep(1)
+        except FloodWait as e:
+            await asyncio.sleep(e.value + 1)
+            try:
+                await app.forward_messages(chat_id=chat_id, from_chat_id=message.chat.id, message_ids=to_send)
+            except Exception:
+                failed += 1
         except Exception:
             failed += 1
     
@@ -112,6 +117,12 @@ async def announced(_, message: Message):
         try:
             await app.forward_messages(chat_id=user_id, from_chat_id=message.chat.id, message_ids=to_send)
             await asyncio.sleep(1)
+        except FloodWait as e:
+            await asyncio.sleep(e.value + 1)
+            try:
+                await app.forward_messages(chat_id=user_id, from_chat_id=message.chat.id, message_ids=to_send)
+            except Exception:
+                failed_user += 1
         except Exception:
             failed_user += 1
 
