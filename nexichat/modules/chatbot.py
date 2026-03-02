@@ -4,6 +4,8 @@ from pyrogram.errors import UserNotParticipant
 from pyrogram import Client, filters
 from pyrogram.enums import ChatAction
 from pyrogram.types import InlineKeyboardMarkup, Message
+import html
+
 from nexichat import app, mongo
 
 # Custom adminsOnly decorator
@@ -65,7 +67,7 @@ async def smart_match(user_message, database):
 @adminsOnly("can_delete_messages")
 async def chaton_(_, m: Message):
     await m.reply_text(
-        f"ᴄʜᴀᴛ: {m.chat.title}\n<b>ᴄʜᴏᴏsᴇ ᴀɴ ᴏᴩᴛɪᴏɴ ᴛᴏ ᴇɴᴀʙʟᴇ/ᴅɪsᴀʙʟᴇ ᴄʜᴀᴛʙᴏᴛ.</b>",
+        f"ᴄʜᴀᴛ: {html.escape(m.chat.title)}\n<b>ᴄʜᴏᴏsᴇ ᴀɴ ᴏᴩᴛɪᴏɴ ᴛᴏ ᴇɴᴀʙʟᴇ/ᴅɪsᴀʙʟᴇ ᴄʜᴀᴛʙᴏᴛ.</b>",
         reply_markup=InlineKeyboardMarkup(CHATBOT_ON),
     )
 

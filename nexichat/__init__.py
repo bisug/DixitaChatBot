@@ -34,8 +34,10 @@ class NexiChat(Client):
 
     async def start(self):
         await super().start()
+        import html
         self.id = self.me.id
-        self.name = self.me.first_name + " " + (self.me.last_name or "")
+        raw_name = self.me.first_name + " " + (self.me.last_name or "")
+        self.name = html.escape(raw_name)
         self.username = self.me.username
         self.mention = self.me.mention
 
