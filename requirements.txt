@@ -8,3 +8,5 @@ asyncio
 python-dotenv
 psutil
 redis
+orjson
+uvloop

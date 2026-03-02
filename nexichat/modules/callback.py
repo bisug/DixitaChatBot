@@ -83,34 +83,30 @@ async def cb_handler(_, query: CallbackQuery):
                 "ʏᴏᴜ'ʀᴇ ɴᴏᴛ ᴇᴠᴇɴ ᴀɴ ᴀᴅᴍɪɴ, ᴅᴏɴ'ᴛ ᴛʀʏ ᴛʜɪs ᴇxᴘʟᴏsɪᴠᴇ sʜɪᴛ!",
                 show_alert=True,
             )
+            
+        is_DAXX = DAXX.find_one({"chat_id": query.message.chat.id})
+        if not is_DAXX:
+            await query.edit_message_text("<b>ᴄʜᴀᴛ-ʙᴏᴛ ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.</b>")
         else:
-            is_DAXX = DAXX.find_one({"chat_id": query.message.chat.id})
-            if not is_DAXX:
-                await query.edit_message_text(f"<b>ᴄʜᴀᴛ-ʙᴏᴛ ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.</b>")
-            if is_DAXX:
-                DAXX.delete_one({"chat_id": query.message.chat.id})
-                if redis_db:
-                    redis_db.set(f"chatbot_disabled_{query.message.chat.id}", "0", ex=3600)
-                await query.edit_message_text(
-                    f"<b>ᴄʜᴀᴛ-ʙᴏᴛ ᴇɴᴀʙʟᴇᴅ ʙʏ</b> {query.from_user.mention}."
-                )
+            DAXX.delete_one({"chat_id": query.message.chat.id})
+            if redis_db:
+                redis_db.set(f"chatbot_disabled_{query.message.chat.id}", "0", ex=3600)
+            await query.edit_message_text(f"<b>ᴄʜᴀᴛ-ʙᴏᴛ ᴇɴᴀʙʟᴇᴅ ʙʏ</b> {query.from_user.mention}.")
+
     elif query.data == "rmchat":
         user_id = query.from_user.id
         user_status = (await query.message.chat.get_member(user_id)).status
         if user_status not in [CMS.OWNER, CMS.ADMINISTRATOR]:
-            await query.answer(
+            return await query.answer(
                 "ʏᴏᴜ'ʀᴇ ɴᴏᴛ ᴇᴠᴇɴ ᴀɴ ᴀᴅᴍɪɴ, ᴅᴏɴ'ᴛ ᴛʀʏ ᴛʜɪs ᴇxᴘʟᴏsɪᴠᴇ sʜɪᴛ!",
                 show_alert=True,
             )
-            return
+            
+        is_DAXX = DAXX.find_one({"chat_id": query.message.chat.id})
+        if is_DAXX:
+            await query.edit_message_text("<b>ᴄʜᴀᴛ-ʙᴏᴛ ᴀʟʀᴇᴀᴅʏ ᴅɪsᴀʙʟᴇᴅ.</b>")
         else:
-            is_DAXX = DAXX.find_one({"chat_id": query.message.chat.id})
-            if not is_DAXX:
-                DAXX.insert_one({"chat_id": query.message.chat.id})
-                if redis_db:
-                    redis_db.set(f"chatbot_disabled_{query.message.chat.id}", "1", ex=3600)
-                await query.edit_message_text(
-                    f"<b>ᴄʜᴀᴛ-ʙᴏᴛ ᴅɪsᴀʙʟᴇᴅ ʙʏ</b> {query.from_user.mention}."
-                )
-            if is_DAXX:
-                await query.edit_message_text("<b>ᴄʜᴀᴛ-ʙᴏᴛ ᴀʟʀᴇᴀᴅʏ ᴅɪsᴀʙʟᴇᴅ.</b>")
+            DAXX.insert_one({"chat_id": query.message.chat.id})
+            if redis_db:
+                redis_db.set(f"chatbot_disabled_{query.message.chat.id}", "1", ex=3600)
+            await query.edit_message_text(f"<b>ᴄʜᴀᴛ-ʙᴏᴛ ᴅɪsᴀʙʟᴇᴅ ʙʏ</b> {query.from_user.mention}.")

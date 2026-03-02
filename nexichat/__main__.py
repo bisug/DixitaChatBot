@@ -2,8 +2,9 @@ import asyncio
 import importlib
 
 from pyrogram import idle
+import nexichat.config as config  # Imported config to access global REDIS URL (note we will use the nexichat module elements)
 
-from nexichat import LOGGER, app
+from nexichat import LOGGER, app, mongo, redis_db
 from nexichat.modules import ALL_MODULES
 
 
@@ -22,5 +23,32 @@ async def anony_boot():
 
 
 if __name__ == "__main__":
-    asyncio.get_event_loop().run_until_complete(anony_boot())
-    LOGGER.info("Stopping nexichat Bot...")
+    try:
+        import uvloop
+        uvloop.install()
+        LOGGER.info("uvloop enabled successfully.")
+    except ImportError:
+        LOGGER.info("uvloop not installed, using standard asyncio.")
+        
+    loop = asyncio.get_event_loop()
+    try:
+        loop.run_until_complete(anony_boot())
+    except KeyboardInterrupt:
+        pass
+    finally:
+        LOGGER.info("Stopping nexichat Bot...")
+        # Graceful shutdown of database connections
+        try:
+            mongo.close()
+            LOGGER.info("MongoDB connection closed.")
+        except Exception:
+            pass
+            
+        if redis_db:
+            try:
+                redis_db.close()
+                LOGGER.info("Redis connection closed.")
+            except Exception:
+                pass
+        
+        loop.stop()

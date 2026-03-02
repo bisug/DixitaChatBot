@@ -19,16 +19,16 @@ async def stats(cli: Client, message: Message):
     redis_status = "<b>✅ ᴏɴʟɪɴᴇ</b>" if redis_db and redis_db.ping() else "<b>❌ ᴏғғʟɪɴᴇ</b>"
     
     await message.reply_text(
-        f"""<b>📊 ᴛᴏᴛᴀʟ sᴛᴀᴛs ᴏғ {(await cli.get_me()).mention} :</b>
+        f"""<b>OVERALL sᴛᴀᴛs ᴏғ {(await cli.get_me()).mention} :</b>
 
-<b>👥 ʙᴏᴛ ʀᴇᴀᴄʜ:</b>
+<b>ʙᴏᴛ'S ʀᴇᴀᴄʜ:</b>
 ➻ <b>ᴄʜᴀᴛs :</b> <code>{chats}</code>
 ➻ <b>ᴜsᴇʀs :</b> <code>{users}</code>
 
-<b>🗄️ ᴅᴀᴛᴀʙᴀsᴇ / ᴍᴏɴɢᴏᴅʙ:</b>
-➻ <b>ᴀɪ ʀᴇsᴘᴏɴsᴇs sᴀᴠᴇᴅ :</b> <code>{word_count}</code>
+<b>ᴅᴀᴛᴀʙᴀsᴇ:</b>
+➻ <b>ʀᴇsᴘᴏɴsᴇs sᴀᴠᴇᴅ :</b> <code>{word_count}</code>
 ➻ <b>ᴅɪsᴀʙʟᴇᴅ ᴄʜᴀᴛs :</b> <code>{daxx_count}</code>
 
-<b>⚡ ᴄᴀᴄʜᴇ / ʀᴇᴅɪs:</b>
+<b>ᴄᴀᴄʜᴇ:</b>
 ➻ <b>sᴛᴀᴛᴜs :</b> {redis_status}"""
     )
