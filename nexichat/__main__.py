@@ -1,6 +1,17 @@
 import asyncio
 import importlib
 
+# Install uvloop BEFORE importing nexichat so that pyrogram's Client
+# is constructed under the correct event loop policy.
+try:
+    import uvloop
+    uvloop.install()
+    import logging
+    logging.getLogger(__name__).info("uvloop enabled successfully.")
+except ImportError:
+    import logging
+    logging.getLogger(__name__).info("uvloop not installed, using standard asyncio.")
+
 from pyrogram import idle
 
 from nexichat import LOGGER, app, mongo, redis_db
@@ -36,13 +47,6 @@ async def anony_boot():
 
 
 if __name__ == "__main__":
-    try:
-        import uvloop
-        uvloop.install()
-        LOGGER.info("uvloop enabled successfully.")
-    except ImportError:
-        LOGGER.info("uvloop not installed, using standard asyncio.")
-
     try:
         asyncio.run(anony_boot())
     except KeyboardInterrupt:
