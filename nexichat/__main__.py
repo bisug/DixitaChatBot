@@ -2,7 +2,6 @@ import asyncio
 import importlib
 
 from pyrogram import idle
-import nexichat.config as config  # Imported config to access global REDIS URL (note we will use the nexichat module elements)
 
 from nexichat import LOGGER, app, mongo, redis_db
 from nexichat.modules import ALL_MODULES
