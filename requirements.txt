@@ -4,7 +4,6 @@ motor
 requests
 dnspython
 tgcrypto
-asyncio
 python-dotenv
 psutil
 redis
