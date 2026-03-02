@@ -82,20 +82,6 @@ EMOJIOS = [
 @app.on_message(filters.command(["start", "aistart"]))
 async def start(_, m: Message):
     if m.chat.type == ChatType.PRIVATE:
-        accha = await m.reply_text(
-            text=random.choice(EMOJIOS),
-        )
-        await asyncio.sleep(1.3)
-        await accha.edit("<i>ᴅιиg ᴅσиg ꨄ︎ ѕтαятιиg..</i>")
-        await asyncio.sleep(0.2)
-        await accha.edit("<i>ᴅιиg ᴅσиg ꨄ sтαятιиg.....</i>")
-        await asyncio.sleep(0.2)
-        await accha.edit("<i>ᴅιиg ᴅσиg ꨄ︎ ѕтαятιиg..</i>")
-        await asyncio.sleep(0.2)
-        await accha.delete()
-        umm = await m.reply_sticker(sticker=random.choice(STICKER))
-        await asyncio.sleep(2)
-        await umm.delete()
         await m.reply_photo(
             photo=random.choice(IMG),
             caption=f"<b>๏ ʜᴇʏ, ɪ ᴀᴍ {app.name}</b>\n<b>➻ ᴀɴ ᴀɪ ʙᴀsᴇᴅ ᴄʜᴀᴛʙᴏᴛ.</b>\n<b>──────────────</b>\n<b>➻ ᴜsᴀɢᴇ /chatbot [ᴏɴ/ᴏғғ]</b>\n<b>||๏ ʜɪᴛ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ғᴏʀ ʜᴇʟᴘ||</b>",
