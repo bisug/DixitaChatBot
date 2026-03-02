@@ -178,14 +178,21 @@ Railway is a fast PaaS that supports easy deployments via GitHub integration. Co
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app)
 
-### Method 4: Deploy on Render (Background Worker)
+### Method 4: Deploy on Render (Web Service)
 
-Render is a great platform for hosting bots. Telegram bots polling for updates should ideally run as **Background Workers** rather than Web Services because they do not require exposed web HTTP ports.
+Render is an excellent platform for hosting your bot natively with the new FastAPI integration.
 
-1. Create an account on [Render](https://render.com).
-2. Click **New +** and select **Blueprint**.
-3. Connect your GitHub repository. Render will automatically detect the `render.yaml` file provided in this repository and configure it as a Worker.
-4. Go to your new service's **Environment** tab and fill in your credentials (`API_ID`, `BOT_TOKEN`, `MONGO_URL`, etc.).
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/bisug/DixitaChatBot)
+
+1. Click the **Deploy to Render** button above.
+2. Render will automatically detect the `render.yaml` configuration and deploy it as a Web Service.
+3. Fill in the required environment variables (`API_ID`, `BOT_TOKEN`, `MONGO_URL`, etc.).
+
+**Note on keeping the bot alive 24/7:** Free tiers on Render sleep after 15 minutes of inactivity. To keep your bot running perpetually:
+1. Go to [Cron-job.org](https://cron-job.org/) and create a free account.
+2. Create a new cronjob and paste your Render Web Service URL (e.g., `https://your-app-name.onrender.com/`).
+3. Set the execution schedule to **Every 1 minute**.
+4. Save the cronjob. It will ping your bot's FastAPI root endpoint automatically, preventing it from ever spinning down!
 
 ### Method 5: Deploy on Koyeb (Worker Service)
 
