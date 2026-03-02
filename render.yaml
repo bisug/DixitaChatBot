@@ -2,9 +2,7 @@ services:
   - type: web
     plan: free
     name: dixitachatbot
-    runtime: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "python -m dixitabot"
+    env: docker
     envVars:
       - key: API_ID
         sync: false
