@@ -144,5 +144,23 @@ async def chatbot_smart(client: Client, message: Message):
     # Process AI logic based on contextual triggers
     if not message.reply_to_message:
         await process_ai_response(client, message, chatai)
-    elif message.reply_to_message and message.reply_to_message.from_user.id == client.id:
-        await process_ai_response(client, message, chatai)
+    elif message.reply_to_message:
+        if message.reply_to_message.from_user and message.reply_to_message.from_user.id == client.id:
+            await process_ai_response(client, message, chatai)
+        else:
+            # Self-learning mechanism: learn from user-to-user replies
+            if message.reply_to_message.text and not message.reply_to_message.text.startswith(("/", "!", "?", "@", "#")):
+                word = message.reply_to_message.text.lower().strip()
+                if message.text:
+                    # Check if this exact pair already exists to avoid redundant entries
+                    exists = await chatai.find_one({"word": word, "text": message.text, "check": "text"})
+                    if not exists:
+                        await chatai.insert_one({"word": word, "text": message.text, "check": "text"})
+                        if redis_db:
+                            redis_db.delete(f"word_cache_{word}")
+                elif message.sticker:
+                    exists = await chatai.find_one({"word": word, "text": message.sticker.file_id, "check": "sticker"})
+                    if not exists:
+                        await chatai.insert_one({"word": word, "text": message.sticker.file_id, "check": "sticker"})
+                        if redis_db:
+                            redis_db.delete(f"word_cache_{word}")
