@@ -21,6 +21,7 @@
 - ✅ **Sticker Replies** - Fun interactions
 - ✅ **MongoDB Powered** - Lightning fast
 - ✅ **Admin Controls** - Full customization
+- ✅ **System Metrics** - Real-time RAM/CPU monitoring
 
 ## 🎬 Dataset
 
@@ -74,10 +75,11 @@ python3 -m nexichat
 |---------|-------------|--------|
 | `/start` | Start the bot | Everyone |
 | `/chatbot` | Enable/disable in groups | Admin |
-| `/ping` | Check bot status | Everyone |
+| `/ping` | Check bot status & system stats | Everyone |
 | `/id` | Get user/chat ID | Everyone |
-| `/stats` | View statistics | Everyone |
-| `/broadcast` | Send broadcast | Owner |
+| `/stats` | View bot statistics | Everyone |
+| `/br` | Broadcast message (Copy) | Owner |
+| `/an` | Announcement (Forward) | Owner |
 
 ## 🎯 How It Works
 
