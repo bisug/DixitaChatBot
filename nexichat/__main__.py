@@ -1,13 +1,5 @@
 import asyncio
 import importlib
-import logging
-
-try:
-    import uvloop
-    uvloop.install()
-    logging.getLogger(__name__).info("uvloop enabled successfully.")
-except ImportError:
-    logging.getLogger(__name__).info("uvloop not installed, using standard asyncio.")
 
 
 async def anony_boot():
