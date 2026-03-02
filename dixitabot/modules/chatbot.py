@@ -130,13 +130,14 @@ async def chatbot_smart(client: Client, message: Message):
     if redis_db:
         cached_status = redis_db.get(cache_key)
         if cached_status is not None:
-            is_DAXX = cached_status == "1"
+            is_DAXX = int(cached_status) == 1
         else:
             is_DAXX_doc = await DAXX.find_one({"chat_id": message.chat.id})
             is_DAXX = bool(is_DAXX_doc)
             redis_db.set(cache_key, "1" if is_DAXX else "0", ex=3600)
     else:
-        is_DAXX = await DAXX.find_one({"chat_id": message.chat.id})
+        is_DAXX_doc = await DAXX.find_one({"chat_id": message.chat.id})
+        is_DAXX = bool(is_DAXX_doc)
     
     if is_DAXX:
         return
