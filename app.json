@@ -1,26 +1,58 @@
 {
-  "name": "nexichat",
-  "description": "A telegram bot",
-  "logo": "https://graph.org/file/0d3f394ebbf5e8488cb1d.jpg",
+  "name": "DixitaChatBot",
+  "description": "A Next-Generation AI Chatbot for Telegram with over 210K+ real conversations.",
+  "logo": "https://ibb.co/B2ZNmfRg",
   "keywords": [
-    "Chatbot",
+    "telegram",
+    "bot",
+    "chatbot",
+    "ai",
     "mongodb",
     "python",
+    "kurigram",
     "pyrogram"
   ],
-    "buildpacks": [{
-    "url": "heroku/python"
-  }],
-  "repository": "https://github.com/DAXXTEAM/DAXXCHATBOT",
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "addons": [
+    {
+      "plan": "rediscloud:30",
+      "as": "REDIS"
+    }
+  ],
+  "repository": "https://github.com/bisug/DixitaChatBot",
   "env": {
+    "API_ID": {
+      "description": "Get this value from https://my.telegram.org",
+      "required": true,
+      "value": ""
+    },
+    "API_HASH": {
+      "description": "Get this value from https://my.telegram.org",
+      "required": true,
+      "value": ""
+    },
     "BOT_TOKEN": {
-      "description": "A Bot token from @BotFather",
+      "description": "A Bot token from @BotFather on Telegram",
       "required": true,
       "value": ""
     },
     "MONGO_URL": {
-      "description": "Get a mongodb url from https://cloud.mongodb.com.",
+      "description": "MongoDB Connection String. Get it from https://cloud.mongodb.com",
       "required": true,
+      "value": ""
+    },
+    "OWNER_ID": {
+      "description": "Your Telegram User ID (Get it from @MissRose_bot using /id)",
+      "required": true,
+      "value": ""
+    },
+    "REDIS_URL": {
+      "description": "Optional: Redis URL (e.g. from Upstash) for caching. Leave empty to use only MongoDB.",
+      "required": false,
       "value": ""
     }
   }
