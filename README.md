@@ -155,6 +155,8 @@ OWNER_ID=your_telegram_id
 SUPPORT_GRP=your_support_group_username
 UPDATE_CHNL=your_update_channel_username
 REDIS_URL=your_redis_url  # Optional: Leave blank or remove entirely if not using Redis
+WEB_SERVICE=True          # Optional: Exposes a web server for Koyeb/Render web-service endpoints
+PORT=8080                 # Optional: Port for the web service (Default: 8080)
 ```
 
 **5. Start the bot persistently using tmux:**

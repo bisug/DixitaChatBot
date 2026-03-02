@@ -23,6 +23,11 @@ async def anony_boot():
     for all_module in ALL_MODULES:
         importlib.import_module("dixitabot.modules." + all_module)
 
+    from config import WEB_SERVICE
+    if WEB_SERVICE:
+        from dixitabot.web import start_web_server
+        asyncio.create_task(start_web_server())
+
     LOGGER.info(f"@{app.username} Started.")
     await idle()
 
