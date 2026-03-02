@@ -7,7 +7,7 @@ from pyrogram.enums import ChatAction, ChatMemberStatus
 from pyrogram.errors import FloodWait, UserNotParticipant
 from pyrogram.types import InlineKeyboardMarkup, Message
 
-from nexichat import app, mongo, redis_db
+from nexichat import LOGGER, app, mongo, redis_db
 from nexichat.modules.helpers.inline import CHATBOT_ON
 
 # Custom adminsOnly decorator
@@ -23,7 +23,7 @@ def adminsOnly(permission: str):
             except UserNotParticipant:
                 return
             except Exception as e:
-                print(f"Error in adminsOnly decorator: {e}")
+                LOGGER.error(f"Error in adminsOnly decorator: {e}")
         return wrapper
     return decorator
 
@@ -94,7 +94,7 @@ async def process_ai_response(client: Client, message: Message, chatai):
             reactions = ["👍", "❤️", "🔥", "😊", "👏"]
             try:
                 await message.react(random.choice(reactions))
-            except:
+            except Exception:
                 pass
         
         # Send response gracefully handling FloodWaits

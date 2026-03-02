@@ -37,11 +37,9 @@ async def getid(client, message):
 
     if reply and reply.forward_from_chat:
         text += f"ᴛʜᴇ ғᴏʀᴡᴀʀᴅᴇᴅ ᴄʜᴀɴɴᴇʟ, <b>{reply.forward_from_chat.title}</b>, ʜᴀs ᴀɴ ɪᴅ ᴏғ <code>{reply.forward_from_chat.id}</code>\n\n"
-        print(reply.forward_from_chat)
 
     if reply and reply.sender_chat:
         text += f"ɪᴅ ᴏғ ᴛʜᴇ ʀᴇᴘʟɪᴇᴅ ᴄʜᴀᴛ/ᴄʜᴀɴɴᴇʟ, ɪs <code>{reply.sender_chat.id}</code>"
-        print(reply.sender_chat)
 
     await message.reply_text(
         text,
