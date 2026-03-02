@@ -7,3 +7,4 @@ tgcrypto
 asyncio
 python-dotenv
 psutil
+redis

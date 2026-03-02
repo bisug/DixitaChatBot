@@ -10,6 +10,4 @@ MONGO_URL = getenv("MONGO_URL", "mongodb+srv://vclub:vclub@vclub.hauilrr.mongodb
 OWNER_ID = int(getenv("OWNER_ID", "8322551557"))
 SUPPORT_GRP = getenv("SUPPORT_GRP", "HEROKUFREECC")
 UPDATE_CHNL = getenv("UPDATE_CHNL", "ALLTYPECC")
-
-
-
+REDIS_URL = getenv("REDIS_URL", "redis://localhost:6379")

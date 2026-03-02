@@ -1,5 +1,4 @@
 from pyrogram import filters
-import html
 
 from nexichat import app
 
@@ -37,7 +36,7 @@ async def getid(client, message):
         text += f"<b><a href='tg://user?id={reply.from_user.id}'>ʀᴇᴘʟɪᴇᴅ ᴜsᴇʀ ɪᴅ:</a></b> <code>{reply.from_user.id}</code>\n\n"
 
     if reply and reply.forward_from_chat:
-        text += f"ᴛʜᴇ ғᴏʀᴡᴀʀᴅᴇᴅ ᴄʜᴀɴɴᴇʟ, <b>{html.escape(reply.forward_from_chat.title)}</b>, ʜᴀs ᴀɴ ɪᴅ ᴏғ <code>{reply.forward_from_chat.id}</code>\n\n"
+        text += f"ᴛʜᴇ ғᴏʀᴡᴀʀᴅᴇᴅ ᴄʜᴀɴɴᴇʟ, <b>{reply.forward_from_chat.title}</b>, ʜᴀs ᴀɴ ɪᴅ ᴏғ <code>{reply.forward_from_chat.id}</code>\n\n"
         print(reply.forward_from_chat)
 
     if reply and reply.sender_chat:

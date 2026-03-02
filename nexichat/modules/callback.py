@@ -3,7 +3,7 @@ from pyrogram.types import CallbackQuery, InlineKeyboardMarkup
 
 from config import SUPPORT_GRP
 
-from nexichat import app
+from nexichat import app, redis_db
 from nexichat.database import DAXX
 from nexichat.modules.helpers import (
     ABOUT_BTN,
@@ -89,6 +89,8 @@ async def cb_handler(_, query: CallbackQuery):
                 await query.edit_message_text(f"<b>ᴄʜᴀᴛ-ʙᴏᴛ ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.</b>")
             if is_DAXX:
                 DAXX.delete_one({"chat_id": query.message.chat.id})
+                if redis_db:
+                    redis_db.set(f"chatbot_disabled_{query.message.chat.id}", "0", ex=3600)
                 await query.edit_message_text(
                     f"<b>ᴄʜᴀᴛ-ʙᴏᴛ ᴇɴᴀʙʟᴇᴅ ʙʏ</b> {query.from_user.mention}."
                 )
@@ -105,6 +107,8 @@ async def cb_handler(_, query: CallbackQuery):
             is_DAXX = DAXX.find_one({"chat_id": query.message.chat.id})
             if not is_DAXX:
                 DAXX.insert_one({"chat_id": query.message.chat.id})
+                if redis_db:
+                    redis_db.set(f"chatbot_disabled_{query.message.chat.id}", "1", ex=3600)
                 await query.edit_message_text(
                     f"<b>ᴄʜᴀᴛ-ʙᴏᴛ ᴅɪsᴀʙʟᴇᴅ ʙʏ</b> {query.from_user.mention}."
                 )

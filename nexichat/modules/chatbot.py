@@ -4,9 +4,8 @@ from pyrogram.errors import UserNotParticipant
 from pyrogram import Client, filters
 from pyrogram.enums import ChatAction
 from pyrogram.types import InlineKeyboardMarkup, Message
-import html
 
-from nexichat import app, mongo
+from nexichat import app, mongo, redis_db
 
 # Custom adminsOnly decorator
 def adminsOnly(permission):
@@ -67,7 +66,7 @@ async def smart_match(user_message, database):
 @adminsOnly("can_delete_messages")
 async def chaton_(_, m: Message):
     await m.reply_text(
-        f"ᴄʜᴀᴛ: {html.escape(m.chat.title)}\n<b>ᴄʜᴏᴏsᴇ ᴀɴ ᴏᴩᴛɪᴏɴ ᴛᴏ ᴇɴᴀʙʟᴇ/ᴅɪsᴀʙʟᴇ ᴄʜᴀᴛʙᴏᴛ.</b>",
+        f"ᴄʜᴀᴛ: {m.chat.title}\n<b>ᴄʜᴏᴏsᴇ ᴀɴ ᴏᴩᴛɪᴏɴ ᴛᴏ ᴇɴᴀʙʟᴇ/ᴅɪsᴀʙʟᴇ ᴄʜᴀᴛʙᴏᴛ.</b>",
         reply_markup=InlineKeyboardMarkup(CHATBOT_ON),
     )
 
@@ -89,10 +88,25 @@ async def chatbot_smart(client: Client, message: Message):
         pass
     
     chatai = mongo["Word"]["WordDb"]
-    
-    # Check if chatbot is disabled
     DAXX = mongo["DAXXDb"]["DAXX"]
-    is_DAXX = await DAXX.find_one({"chat_id": message.chat.id})
+    
+    # Check Redis cache first if available
+    is_DAXX = False
+    cache_key = f"chatbot_disabled_{message.chat.id}"
+    
+    if redis_db:
+        cached_status = redis_db.get(cache_key)
+        if cached_status is not None:
+            is_DAXX = cached_status == "1"
+        else:
+            # Cache miss, hit MongoDB
+            is_DAXX_doc = await DAXX.find_one({"chat_id": message.chat.id})
+            is_DAXX = bool(is_DAXX_doc)
+            # Store result in Redis for 1 hour (3600 seconds)
+            redis_db.set(cache_key, "1" if is_DAXX else "0", ex=3600)
+    else:
+        # Fallback to pure MongoDB if Redis fails
+        is_DAXX = await DAXX.find_one({"chat_id": message.chat.id})
     
     if is_DAXX:
         return
