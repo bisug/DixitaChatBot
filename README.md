@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://ibb.co/B2ZNmfRg" alt="DixitaChatBot Logo" width="150" height="auto">
+  <img src="" alt="DixitaChatBot Logo" width="150" height="auto">
   <h1>DixitaChatBot</h1>
   <p><b>Next-Generation AI Chatbot for Telegram</b></p>
 
@@ -175,6 +175,25 @@ You can instantly deploy DixitaChatBot to Heroku using the button below. The `ap
 Railway is a fast PaaS that supports easy deployments via GitHub integration. Connect your repository and supply the environment variables defined above during the setup phase.
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app)
+
+### Method 4: Deploy on Render (Background Worker)
+
+Render is a great platform for hosting bots. Telegram bots polling for updates should ideally run as **Background Workers** rather than Web Services because they do not require exposed web HTTP ports.
+
+1. Create an account on [Render](https://render.com).
+2. Click **New +** and select **Blueprint**.
+3. Connect your GitHub repository. Render will automatically detect the `render.yaml` file provided in this repository and configure it as a Worker.
+4. Go to your new service's **Environment** tab and fill in your credentials (`API_ID`, `BOT_TOKEN`, `MONGO_URL`, etc.).
+
+### Method 5: Deploy on Koyeb (Worker Service)
+
+Koyeb provides high-performance serverless deployments.
+
+1. Create a [Koyeb](https://app.koyeb.com) account.
+2. Click **Create Service** -> **GitHub** -> Select your `DixitaChatBot` repository.
+3. In the deployment settings, you must change the **Service Type** from *Web Service* to **Worker**. This is vital to prevent health-check deployment timeouts since the bot does not listen on web ports.
+4. Expand the **Environment variables** section and add all your required keys (`API_ID`, `BOT_TOKEN`, etc.).
+5. Click **Deploy**.
 
 ---
 
