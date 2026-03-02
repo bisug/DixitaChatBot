@@ -37,7 +37,7 @@ Plus custom Indian conversations (Hindi/Hinglish)
 ### Requirements
 
 ```bash
-- Python 3.11+
+- Python 3.13-slim+
 - MongoDB
 - Telegram Bot Token
 ```
@@ -119,7 +119,7 @@ The more it's used, the smarter it gets!
 
 ## 🛠️ Tech Stack
 
-- **Language**: Python 3.11+
+- **Language**: Python 3.13+
 - **Framework**: Pyrogram (MTProto)
 - **Database**: MongoDB
 - **Dataset**: Cornell Movie Dialogs + Custom

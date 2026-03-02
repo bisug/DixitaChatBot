@@ -3,12 +3,12 @@
 import asyncio
 import random
 
-from pyrogram import filters
+from pyrogram import filters, Client
 from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 
-from nexichat import nexichat
+from nexichat import app
 from nexichat.database.chats import add_served_chat
 from nexichat.database.users import add_served_user
 from nexichat.modules.helpers import (
@@ -79,7 +79,7 @@ EMOJIOS = [
 
 #---------------EMOJIOS---------------#
 
-@nexichat.on_cmd(["start", "aistart"])
+@app.on_message(filters.command(["start", "aistart"]))
 async def start(_, m: Message):
     if m.chat.type == ChatType.PRIVATE:
         accha = await m.reply_text(
@@ -98,7 +98,7 @@ async def start(_, m: Message):
         await umm.delete()
         await m.reply_photo(
             photo=random.choice(IMG),
-            caption=f"""**๏ ʜᴇʏ, ɪ ᴀᴍ {nexichat.name}**\n**➻ ᴀɴ ᴀɪ ʙᴀsᴇᴅ ᴄʜᴀᴛʙᴏᴛ.**\n**──────────────**\n**➻ ᴜsᴀɢᴇ /chatbot [ᴏɴ/ᴏғғ]**\n<b>||๏ ʜɪᴛ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ғᴏʀ ʜᴇʟᴘ||</b>""",
+            caption=f"""**๏ ʜᴇʏ, ɪ ᴀᴍ {app.name}**\n**➻ ᴀɴ ᴀɪ ʙᴀsᴇᴅ ᴄʜᴀᴛʙᴏᴛ.**\n**──────────────**\n**➻ ᴜsᴀɢᴇ /chatbot [ᴏɴ/ᴏғғ]**\n<b>||๏ ʜɪᴛ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ғᴏʀ ʜᴇʟᴘ||</b>""",
             reply_markup=InlineKeyboardMarkup(DEV_OP),
         )
         await add_served_user(m.from_user.id)
@@ -111,8 +111,8 @@ async def start(_, m: Message):
         await add_served_chat(m.chat.id)
 
 
-@nexichat.on_cmd("help")
-async def help(client: nexichat, m: Message):
+@app.on_message(filters.command("help"))
+async def help(client: Client, m: Message):
     if m.chat.type == ChatType.PRIVATE:
         hmm = await m.reply_photo(
             photo=random.choice(IMG),
@@ -129,7 +129,7 @@ async def help(client: nexichat, m: Message):
         await add_served_chat(m.chat.id)
 
 
-@nexichat.on_cmd("repo")
+@app.on_message(filters.command("repo"))
 async def repo(_, m: Message):
     await m.reply_text(
         text=SOURCE_READ,
@@ -138,7 +138,7 @@ async def repo(_, m: Message):
     )
 
 
-@nexichat.on_message(filters.new_chat_members)
+@app.on_message(filters.new_chat_members)
 async def welcome(_, m: Message):
     for member in m.new_chat_members:
         await m.reply_photo(photo=random.choice(IMG), caption=START)

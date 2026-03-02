@@ -3,14 +3,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_ID = "24509589"
-API_HASH = "717cf21d94c4934bcbe1eaa1ad86ae75"
-BOT_TOKEN = "8568457723:AAFeCfdNRIi6wNYtlhfpO91WFNlG40fHEkc"
-MONGO_URL = "mongodb+srv://vclub:vclub@vclub.hauilrr.mongodb.net/?retryWrites=true&w=majority"
-OWNER_ID = "8322551557"
-SUPPORT_GRP = "HEROKUFREECC"
-UPDATE_CHNL = "ALLTYPECC"
-OWNER_USERNAME = "Imeshu"
+API_ID = int(getenv("API_ID", "24509589"))
+API_HASH = getenv("API_HASH", "717cf21d94c4934bcbe1eaa1ad86ae75")
+BOT_TOKEN = getenv("BOT_TOKEN", "8568457723:AAFeCfdNRIi6wNYtlhfpO91WFNlG40fHEkc")
+MONGO_URL = getenv("MONGO_URL", "mongodb+srv://vclub:vclub@vclub.hauilrr.mongodb.net/?retryWrites=true&w=majority")
+OWNER_ID = int(getenv("OWNER_ID", "8322551557"))
+SUPPORT_GRP = getenv("SUPPORT_GRP", "HEROKUFREECC")
+UPDATE_CHNL = getenv("UPDATE_CHNL", "ALLTYPECC")
 
-# Additional settings
-OWNER = [8322551557]
+
+

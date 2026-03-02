@@ -1,32 +1,25 @@
-from pyrogram import filters, Client
+import asyncio
+import traceback
+from pyrogram import filters
 from pyrogram.types import Message
+from pyrogram.errors import (
+    FloodWait,
+    InputUserDeactivated,
+    UserIsBlocked,
+    PeerIdInvalid
+)
 
-from nexichat import OWNER, nexichat
+from nexichat import app
 from nexichat.database.chats import get_served_chats
 from nexichat.database.users import get_served_users
 
-import asyncio
-from config import *
 
-from config import OWNER_ID, MONGO_URL
-from pyrogram import *
-from pyrogram.types import *
-from nexichat import nexichat
-from nexichat.db import chatsdb
-from nexichat.db import usersdb
-from nexichat.db import *
-from nexichat.database import *
-
-
-
-
-
-async def send_msg(user_id, message):
+async def send_msg(user_id, message: Message):
     try:
         await message.copy(chat_id=user_id)
     except FloodWait as e:
-        await asyncio.sleep(e.x)
-        return send_msg(user_id, message)
+        await asyncio.sleep(e.value)
+        return await send_msg(user_id, message)
     except InputUserDeactivated:
         return 400, f"{user_id} : deactivated\n"
     except UserIsBlocked:
@@ -35,37 +28,52 @@ async def send_msg(user_id, message):
         return 400, f"{user_id} : user id invalid\n"
     except Exception:
         return 500, f"{user_id} : {traceback.format_exc()}\n"
+    return 200, "Success"
 
 
-@nexichat.on_cmd("br")
-async def broadcast(_, message):
+@app.on_message(filters.command("br"))
+async def broadcast(_, message: Message):
     if not message.reply_to_message:
         await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴛᴏ ʙʀᴏᴀᴅᴄᴀsᴛ ɪᴛ.")
         return    
+    
     exmsg = await message.reply_text("sᴛᴀʀᴛᴇᴅ ʙʀᴏᴀᴅᴄᴀsᴛɪɴɢ!")
-    all_chats = (await get_chats()) or {}
-    all_users = (await get_users()) or {}
+    all_chats = await get_served_chats() or []
+    all_users = await get_served_users() or []
+    
     done_chats = 0
     done_users = 0
     failed_chats = 0
     failed_users = 0
+    
     for chat in all_chats:
+        chat_id = chat.get("chat_id")
+        if not chat_id:
+            continue
         try:
-            await send_msg(chat, message.reply_to_message)
-            done_chats += 1
-            await asyncio.sleep(0.1)
+            status, _ = await send_msg(chat_id, message.reply_to_message)
+            if status == 200:
+                done_chats += 1
+            else:
+                failed_chats += 1
         except Exception:
-            pass
             failed_chats += 1
+        await asyncio.sleep(0.1)
 
     for user in all_users:
+        user_id = user.get("user_id")
+        if not user_id:
+            continue
         try:
-            await send_msg(user, message.reply_to_message)
-            done_users += 1
-            await asyncio.sleep(0.1)
+            status, _ = await send_msg(user_id, message.reply_to_message)
+            if status == 200:
+                done_users += 1
+            else:
+                failed_users += 1
         except Exception:
-            pass
             failed_users += 1
+        await asyncio.sleep(0.1)
+        
     if failed_users == 0 and failed_chats == 0:
         await exmsg.edit_text(
             f"**sᴜᴄᴄᴇssғᴜʟʟʏ ʙʀᴏᴀᴅᴄᴀsᴛɪɴɢ ✅**\n\n**sᴇɴᴛ ᴍᴇssᴀɢᴇ ᴛᴏ** `{done_chats}` **ᴄʜᴀᴛs ᴀɴᴅ** `{done_users}` **ᴜsᴇʀs**",
@@ -76,34 +84,37 @@ async def broadcast(_, message):
         )
 
 
-
-
-
-@nexichat.on_cmd("an")
-async def announced(_, message):
-    if message.reply_to_message:
-      to_send=message.reply_to_message.id
+@app.on_message(filters.command("an"))
+async def announced(_, message: Message):
     if not message.reply_to_message:
-      return await message.reply_text("Reply To Some Post To Broadcast")
-    chats = await get_chats() or []
-    users = await get_users() or []
-    print(chats)
-    print(users)
+        return await message.reply_text("Reply To Some Post To Broadcast")
+        
+    to_send = message.reply_to_message.id
+    chats = await get_served_chats() or []
+    users = await get_served_users() or []
+    
     failed = 0
     for chat in chats:
-      try:
-        await Nexus.forward_messages(chat_id=int(chat), from_chat_id=message.chat.id, message_ids=to_send)
-        await asyncio.sleep(1)
-      except Exception:
-        failed += 1
+        chat_id = chat.get("chat_id")
+        if not chat_id:
+            continue
+        try:
+            await app.forward_messages(chat_id=chat_id, from_chat_id=message.chat.id, message_ids=to_send)
+            await asyncio.sleep(1)
+        except Exception:
+            failed += 1
     
     failed_user = 0
     for user in users:
-      try:
-        await Nexus.forward_messages(chat_id=int(user), from_chat_id=message.chat.id, message_ids=to_send)
-        await asyncio.sleep(1)
-      except Exception as e:
-        failed_user += 1
+        user_id = user.get("user_id")
+        if not user_id:
+            continue
+        try:
+            await app.forward_messages(chat_id=user_id, from_chat_id=message.chat.id, message_ids=to_send)
+            await asyncio.sleep(1)
+        except Exception:
+            failed_user += 1
 
-
-    await message.reply_text("Bʀᴏᴀᴅᴄᴀsᴛ ᴄᴏᴍᴘʟᴇᴛᴇ. {} ɢʀᴏᴜᴘs ғᴀɪʟᴇᴅ ᴛᴏ ʀᴇᴄᴇɪᴠᴇ ᴛʜᴇ ᴍᴇssᴀɢᴇ, ᴘʀᴏʙᴀʙʟʏ ᴅᴜᴇ ᴛᴏ ʙᴇɪɴɢ ᴋɪᴄᴋᴇᴅ. {} ᴜsᴇʀs ғᴀɪʟᴇᴅ ᴛᴏ ʀᴇᴄᴇɪᴠᴇ ᴛʜᴇ ᴍᴇssᴀɢᴇ, ᴘʀᴏʙᴀʙʟʏ ᴅᴜᴇ ᴛᴏ ʙᴇɪɴɢ ʙᴀɴɴᴇᴅ. .".format(failed, failed_user))
+    await message.reply_text(
+        "Bʀᴏᴀᴅᴄᴀsᴛ ᴄᴏᴍᴘʟᴇᴛᴇ. {} ɢʀᴏᴜᴘs ғᴀɪʟᴇᴅ ᴛᴏ ʀᴇᴄᴇɪᴠᴇ ᴛʜᴇ ᴍᴇssᴀɢᴇ, ᴘʀᴏʙᴀʙʟʏ ᴅᴜᴇ ᴛᴏ ʙᴇɪɴɢ ᴋɪᴄᴋᴇᴅ. {} ᴜsᴇʀs ғᴀɪʟᴇᴅ ᴛᴏ ʀᴇᴄᴇɪᴠᴇ ᴛʜᴇ ᴍᴇssᴀɢᴇ, ᴘʀᴏʙᴀʙʟʏ ᴅᴜᴇ ᴛᴏ ʙᴇɪɴɢ ʙᴀɴɴᴇᴅ.".format(failed, failed_user)
+    )

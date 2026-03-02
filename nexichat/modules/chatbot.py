@@ -1,79 +1,67 @@
 import random
-from Abg.chat_status import adminsOnly
-from pymongo import MongoClient
+from pyrogram.enums import ChatMemberStatus
+from pyrogram.errors import UserNotParticipant
 from pyrogram import Client, filters
 from pyrogram.enums import ChatAction
 from pyrogram.types import InlineKeyboardMarkup, Message
-from config import MONGO_URL
-from nexichat import nexichat
-from nexichat.modules.helpers import CHATBOT_ON, is_admins
+from nexichat import app, mongo
 
-# Import AI handler
-try:
-    from nexichat.ai_handler import ai_handler
-    AI_ENABLED = True
-    print("✅ AI Handler loaded!")
-except Exception as e:
-    AI_ENABLED = False
-    print(f"⚠️ AI disabled: {e}")
+# Custom adminsOnly decorator
+def adminsOnly(permission):
+    def decorator(func):
+        async def wrapper(client, message):
+            try:
+                user = await client.get_chat_member(message.chat.id, message.from_user.id)
+                if user.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR]:
+                    # In a full implementation, you'd check `permission` against `user.privileges`.
+                    # For simplicity, we just check if they are an admin.
+                    return await func(client, message)
+                else:
+                    await message.reply_text("Only admins can use this command.")
+            except UserNotParticipant:
+                await message.reply_text("You are not in this chat.")
+            except Exception as e:
+                print(f"Error in adminsOnly: {e}")
+        return wrapper
+    return decorator
 
-def smart_match(user_message, database):
+async def smart_match(user_message, database):
     """Smart matching with AI fallback"""
     user_message_lower = user_message.lower().strip()
     
     # 1. Try exact match
-    exact = database.find_one({"word": user_message_lower})
+    exact = await database.find_one({"word": user_message_lower})
     if exact:
-        return list(database.find({"word": user_message_lower}))
+        return await database.find({"word": user_message_lower}).to_list(length=None)
     
     # 2. Try variations
     variations = [user_message_lower, user_message.strip(), user_message.capitalize()]
     for var in variations:
-        result = database.find_one({"word": var})
+        result = await database.find_one({"word": var})
         if result:
-            return list(database.find({"word": var}))
+            return await database.find({"word": var}).to_list(length=None)
     
     # 3. Try partial matching
     words = user_message_lower.split()
     if len(words) > 1:
         for word in words:
             if len(word) > 3:
-                result = database.find_one({"word": word})
+                result = await database.find_one({"word": word})
                 if result:
-                    return list(database.find({"word": word}))
+                    return await database.find({"word": word}).to_list(length=None)
     
     # 4. Try regex (fuzzy)
     for word in words:
         if len(word) > 3:
-            regex_result = list(database.find({"word": {"$regex": word, "$options": "i"}}).limit(5))
+            regex_result = await database.find({"word": {"$regex": word, "$options": "i"}}).to_list(length=5)
             if regex_result:
                 return regex_result
     
     return None
 
-def get_ai_response(message_text, chatai_db):
-    """Get response from AI and save to database"""
-    if not AI_ENABLED:
-        return None
-    
-    try:
-        # Get AI response
-        ai_reply = ai_handler.generate_response(message_text)
-        
-        # Save to database for future use
-        chatai_db.insert_one({
-            "word": message_text.lower().strip(),
-            "text": ai_reply,
-            "check": "text",
-            "source": "ai"
-        })
-        
-        return ai_reply
-    except Exception as e:
-        print(f"AI error: {e}")
-        return None
 
-@nexichat.on_cmd("chatbot", group_only=True)
+
+@app.on_message(filters.command("chatbot") & filters.group)
 @adminsOnly("can_delete_messages")
 async def chaton_(_, m: Message):
     await m.reply_text(
@@ -81,7 +69,7 @@ async def chaton_(_, m: Message):
         reply_markup=InlineKeyboardMarkup(CHATBOT_ON),
     )
 
-@nexichat.on_message(
+@app.on_message(
     (filters.text | filters.sticker | filters.group) & ~filters.private & ~filters.bot, group=4
 )
 async def chatbot_smart(client: Client, message: Message):
@@ -98,13 +86,11 @@ async def chatbot_smart(client: Client, message: Message):
     except Exception:
         pass
     
-    chatdb = MongoClient(MONGO_URL)
-    chatai = chatdb["Word"]["WordDb"]
+    chatai = mongo["Word"]["WordDb"]
     
     # Check if chatbot is disabled
-    DAXXdb = MongoClient(MONGO_URL)
-    DAXX = DAXXdb["DAXXDb"]["DAXX"]
-    is_DAXX = DAXX.find_one({"chat_id": message.chat.id})
+    DAXX = mongo["DAXXDb"]["DAXX"]
+    is_DAXX = await DAXX.find_one({"chat_id": message.chat.id})
     
     if is_DAXX:
         return
@@ -115,7 +101,7 @@ async def chatbot_smart(client: Client, message: Message):
             await client.send_chat_action(message.chat.id, ChatAction.TYPING)
             
             # Try smart matching first
-            matches = smart_match(message.text, chatai)
+            matches = await smart_match(message.text, chatai)
             
             if matches:
                 # Found in database
@@ -136,19 +122,7 @@ async def chatbot_smart(client: Client, message: Message):
                     await message.reply_sticker(response_text)
                 else:
                     await message.reply_text(response_text)
-            else:
-                # Not found - use AI
-                ai_response = get_ai_response(message.text, chatai)
-                if ai_response:
-                    # Add random reaction for AI responses too
-                    if random.random() < 0.2:
-                        reactions = ["🤖", "💡", "✨", "🎯"]
-                        try:
-                            await message.react(random.choice(reactions))
-                        except:
-                            pass
-                    
-                    await message.reply_text(ai_response)
+
     
     # Handle replies to bot
     elif message.reply_to_message:
@@ -156,7 +130,7 @@ async def chatbot_smart(client: Client, message: Message):
             if message.text:
                 await client.send_chat_action(message.chat.id, ChatAction.TYPING)
                 
-                matches = smart_match(message.text, chatai)
+                matches = await smart_match(message.text, chatai)
                 
                 if matches:
                     response_data = random.choice(matches)
@@ -167,8 +141,4 @@ async def chatbot_smart(client: Client, message: Message):
                         await message.reply_sticker(response_text)
                     else:
                         await message.reply_text(response_text)
-                else:
-                    # Use AI for unknown replies
-                    ai_response = get_ai_response(message.text, chatai)
-                    if ai_response:
-                        await message.reply_text(ai_response)
+

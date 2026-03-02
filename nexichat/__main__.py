@@ -3,13 +3,13 @@ import importlib
 
 from pyrogram import idle
 
-from nexichat import LOGGER, nexichat
+from nexichat import LOGGER, app
 from nexichat.modules import ALL_MODULES
 
 
 async def anony_boot():
     try:
-        await nexichat.start()
+        await app.start()
     except Exception as ex:
         LOGGER.error(ex)
         quit(1)
@@ -17,7 +17,7 @@ async def anony_boot():
     for all_module in ALL_MODULES:
         importlib.import_module("nexichat.modules." + all_module)
 
-    LOGGER.info(f"@{nexichat.username} Started.")
+    LOGGER.info(f"@{app.username} Started.")
     await idle()
 
 

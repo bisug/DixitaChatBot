@@ -1,14 +1,16 @@
 
 
-import random
+import psutil
+import os
+import time
 from datetime import datetime
 
 from pyrogram import filters
 from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardMarkup, Message
 
-from config import OWNER_USERNAME
-from nexichat import nexichat
+from config import OWNER_ID
+from nexichat import app, boot, db
 from nexichat.database.chats import add_served_chat
 from nexichat.database.users import add_served_user
 from nexichat.modules.helpers import PNG_BTN
@@ -52,22 +54,48 @@ STICKER = [
 
 
 
-@nexichat.on_cmd("ping")
+@app.on_message(filters.command("ping"))
 async def ping(_, message: Message):
-    await message.reply_sticker(sticker=random.choice(STICKER))
     start = datetime.now()
     loda = await message.reply_photo(
-        photo=random.choice(IMG),
+        photo="https://graph.org/file/210751796ff48991b86a3.jpg",
         caption="ᴘɪɴɢɪɴɢ...",
     )
+    
+    # Latency
+    ms = (datetime.now() - start).microseconds / 1000
+    
+    # DB Latency
+    db_start = time.time()
+    await db.command("ping")
+    db_ms = round((time.time() - db_start) * 1000, 2)
+    
+    # Uptime
+    uptime_seconds = int(time.time() - boot)
+    days, remainder = divmod(uptime_seconds, 86400)
+    hours, remainder = divmod(remainder, 3600)
+    minutes, seconds = divmod(remainder, 60)
+    uptime_str = f"{days}d {hours}h {minutes}m {seconds}s"
+    
+    # System Info
+    process = psutil.Process(os.getpid())
+    ram = round(process.memory_info().rss / (1024 * 1024), 2)  # MB
+    cpu = process.cpu_percent(interval=0.1)
     try:
         await message.delete()
-    except:
+    except Exception:
         pass
-
-    ms = (datetime.now() - start).microseconds / 1000
+    
     await loda.edit_text(
-        text=f"нey вαву!!\n{nexichat.name} ιѕ alιve 🥀 αnd worĸιng ғιne wιтн a pιng oғ\n➥ `{ms}` ms\n\n<b>|| мαdє ωιтн ❣️ ву [MRDAXX❣️](https://t.me/{OWNER_USERNAME}) ||</b>",
+        text=f"""нey вαву!!
+{app.name} ιѕ alιve 🥀 αnd worĸιng ғιne!
+
+**ʙᴏᴛ sᴛᴀᴛs:**
+➻ **ʟᴀᴛᴇɴᴄʏ:** `{ms}` ms
+➻ **ᴅʙ ʟᴀᴛᴇɴᴄʏ:** `{db_ms}` ms
+➻ **ᴜᴘᴛɪᴍᴇ:** `{uptime_str}`
+➻ **ʀᴀᴍ:** `{ram}` MB
+➻ **ᴄᴘᴜ:** `{cpu}`%""",
         reply_markup=InlineKeyboardMarkup(PNG_BTN),
     )
     if message.chat.type == ChatType.PRIVATE:

@@ -1,10 +1,10 @@
 from pyrogram import filters
 from pyrogram.enums import ParseMode
 
-from nexichat import nexichat
+from nexichat import app
 
 
-@nexichat.on_cmd("id")
+@app.on_message(filters.command("id"))
 async def getid(client, message):
     chat = message.chat
     your_id = message.from_user.id

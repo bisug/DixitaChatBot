@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+*.log
+
+# VS Code
+.vscode/
+
+# Project Specific
+chat_1m.txt
+chat.txt
+casual_human_chats.txt
+sample_conversations.txt
+cornell movie-dialogs corpus/
+__MACOSX/
+cornell.zip

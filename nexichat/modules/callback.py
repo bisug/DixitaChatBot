@@ -1,9 +1,9 @@
 from pyrogram.enums import ChatMemberStatus as CMS
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup
 
-from config import OWNER_USERNAME, SUPPORT_GRP
+from config import SUPPORT_GRP
 
-from nexichat import nexichat
+from nexichat import app
 from nexichat.database import DAXX
 from nexichat.modules.helpers import (
     ABOUT_BTN,
@@ -22,7 +22,7 @@ from nexichat.modules.helpers import (
 )
 
 
-@nexichat.on_callback_query()
+@app.on_callback_query()
 async def cb_handler(_, query: CallbackQuery):
     if query.data == "HELP":
         await query.message.edit_text(

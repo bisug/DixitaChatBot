@@ -1,12 +1,12 @@
 from pyrogram import filters, Client
 from pyrogram.types import Message
 
-from nexichat import OWNER, nexichat
+from nexichat import OWNER, app
 from nexichat.database.chats import get_served_chats
 from nexichat.database.users import get_served_users
 
 
-@nexichat.on_cmd("stats")
+@app.on_message(filters.command("stats"))
 async def stats(cli: Client, message: Message):
     users = len(await get_served_users())
     chats = len(await get_served_chats())
