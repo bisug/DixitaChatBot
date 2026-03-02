@@ -76,11 +76,11 @@ async def broadcast(_, message: Message):
         
     if failed_users == 0 and failed_chats == 0:
         await exmsg.edit_text(
-            f"**sᴜᴄᴄᴇssғᴜʟʟʏ ʙʀᴏᴀᴅᴄᴀsᴛɪɴɢ ✅**\n\n**sᴇɴᴛ ᴍᴇssᴀɢᴇ ᴛᴏ** `{done_chats}` **ᴄʜᴀᴛs ᴀɴᴅ** `{done_users}` **ᴜsᴇʀs**",
+            f"<b>sᴜᴄᴄᴇssғᴜʟʟʏ ʙʀᴏᴀᴅᴄᴀsᴛɪɴɢ ✅</b>\n\n<b>sᴇɴᴛ ᴍᴇssᴀɢᴇ ᴛᴏ</b> <code>{done_chats}</code> <b>ᴄʜᴀᴛs ᴀɴᴅ</b> <code>{done_users}</code> <b>ᴜsᴇʀs</b>",
         )
     else:
         await exmsg.edit_text(
-            f"**sᴜᴄᴄᴇssғᴜʟʟʏ ʙʀᴏᴀᴅᴄᴀsᴛɪɴɢ ✅**\n\n**sᴇɴᴛ ᴍᴇssᴀɢᴇ ᴛᴏ** `{done_chats}` **ᴄʜᴀᴛs** `{done_users}` **ᴜsᴇʀs**\n\n**ɴᴏᴛᴇ:-** `ᴅᴜᴇ ᴛᴏ sᴏᴍᴇ ɪssᴜᴇ ᴄᴀɴ'ᴛ ᴀʙʟᴇ ᴛᴏ ʙʀᴏᴀᴅᴄᴀsᴛ` `{failed_users}` **ᴜsᴇʀs ᴀɴᴅ** `{failed_chats}` **ᴄʜᴀᴛs**",
+            f"<b>sᴜᴄᴄᴇssғᴜʟʟʏ ʙʀᴏᴀᴅᴄᴀsᴛɪɴɢ ✅</b>\n\n<b>sᴇɴᴛ ᴍᴇssᴀɢᴇ ᴛᴏ</b> <code>{done_chats}</code> <b>ᴄʜᴀᴛs</b> <code>{done_users}</code> <b>ᴜsᴇʀs</b>\n\n<b>ɴᴏᴛᴇ:-</b> <code>ᴅᴜᴇ ᴛᴏ sᴏᴍᴇ ɪssᴜᴇ ᴄᴀɴ'ᴛ ᴀʙʟᴇ ᴛᴏ ʙʀᴏᴀᴅᴄᴀsᴛ</code> <code>{failed_users}</code> <b>ᴜsᴇʀs ᴀɴᴅ</b> <code>{failed_chats}</code> <b>ᴄʜᴀᴛs</b>",
         )
 
 

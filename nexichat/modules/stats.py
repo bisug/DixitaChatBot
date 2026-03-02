@@ -13,6 +13,6 @@ async def stats(cli: Client, message: Message):
     await message.reply_text(
         f"""ᴛᴏᴛᴀʟ sᴛᴀᴛs ᴏғ {(await cli.get_me()).mention} :
 
-➻ **ᴄʜᴀᴛs :** {chats}
-➻ **ᴜsᴇʀs :** {users}"""
+➻ <b>ᴄʜᴀᴛs :</b> {chats}
+➻ <b>ᴜsᴇʀs :</b> {users}"""
     )

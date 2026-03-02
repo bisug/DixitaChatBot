@@ -90,12 +90,12 @@ async def ping(_, message: Message):
         text=f"""нey вαву!!
 {app.name} ιѕ alιve 🥀 αnd worĸιng ғιne!
 
-**ʙᴏᴛ sᴛᴀᴛs:**
-➻ **ʟᴀᴛᴇɴᴄʏ:** `{ms}` ms
-➻ **ᴅʙ ʟᴀᴛᴇɴᴄʏ:** `{db_ms}` ms
-➻ **ᴜᴘᴛɪᴍᴇ:** `{uptime_str}`
-➻ **ʀᴀᴍ:** `{ram}` MB
-➻ **ᴄᴘᴜ:** `{cpu}`%""",
+<b>ʙᴏᴛ sᴛᴀᴛs:</b>
+➻ <b>ʟᴀᴛᴇɴᴄʏ:</b> <code>{ms}</code> ms
+➻ <b>ᴅʙ ʟᴀᴛᴇɴᴄʏ:</b> <code>{db_ms}</code> ms
+➻ <b>ᴜᴘᴛɪᴍᴇ:</b> <code>{uptime_str}</code>
+➻ <b>ʀᴀᴍ:</b> <code>{ram}</code> MB
+➻ <b>ᴄᴘᴜ:</b> <code>{cpu}</code>%""",
         reply_markup=InlineKeyboardMarkup(PNG_BTN),
     )
     if message.chat.type == ChatType.PRIVATE:

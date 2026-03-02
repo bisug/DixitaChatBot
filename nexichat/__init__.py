@@ -29,7 +29,7 @@ class NexiChat(Client):
             lang_code="en",
             bot_token=config.BOT_TOKEN,
             in_memory=True,
-            parse_mode=ParseMode.MARKDOWN,
+            parse_mode=ParseMode.HTML,
         )
 
     async def start(self):
