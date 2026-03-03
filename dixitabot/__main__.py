@@ -7,13 +7,6 @@ async def anony_boot():
     from dixitabot.modules import ALL_MODULES
     from pyrogram import idle
 
-    # kurigram's session uses self.client.loop.create_task() to schedule
-    # recv_worker. That `loop` attribute is set during Client.__init__ via
-    # asyncio.get_event_loop(), but asyncio.run() creates a *new* loop,
-    # so they differ. Patching it here (inside the running loop) guarantees
-    # session tasks are created on the correct loop.
-    app.loop = asyncio.get_running_loop()
-
     try:
         await app.start()
     except Exception as ex:
