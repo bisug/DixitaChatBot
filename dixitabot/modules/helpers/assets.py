@@ -1,6 +1,6 @@
-# Centralized Assets Handlers
+# Centralized collection of visual assets for the bot's interface
 
-# Random Start Images
+# List of URLs for random images displayed during the /start and /help commands
 IMG = [
     "https://graph.org/file/210751796ff48991b86a3.jpg",
     "https://graph.org/file/7b4924be4179f70abcf33.jpg",
@@ -18,14 +18,14 @@ IMG = [
     "https://graph.org/file/e8b472bcfa6680f6c6a5d.jpg",
 ]
 
-# Random Stickers
+# List of Telegram file IDs for random stickers sent by the bot
 STICKER = [
     "CAACAgUAAx0CYlaJawABBy4vZaieO6T-Ayg3mD-JP-f0yxJngIkAAv0JAALVS_FWQY7kbQSaI-geBA",
     "CAACAgUAAx0CYlaJawABBy4rZaid77Tf70SV_CfjmbMgdJyVD8sAApwLAALGXCFXmCx8ZC5nlfQeBA",
     "CAACAgUAAx0CYlaJawABBy4jZaidvIXNPYnpAjNnKgzaHmh3cvoAAiwIAAIda2lVNdNI2QABHuVVHgQ",
 ]
 
-# Random Emojios
+# List of emojis used for decorative purposes in messages
 EMOJIOS = [
     "💣",
     "💥",

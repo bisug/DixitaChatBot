@@ -1,17 +1,13 @@
 import asyncio
 import importlib
 
-
 async def anony_boot():
+    """Initializes and starts the DixitaChatBot and its modules."""
     from dixitabot import LOGGER, app, mongo, redis_db
     from dixitabot.modules import ALL_MODULES
     from pyrogram import idle
 
-    # kurigram's session uses self.client.loop.create_task() to schedule
-    # recv_worker. That `loop` attribute is set during Client.__init__ via
-    # asyncio.get_event_loop(), but asyncio.run() creates a *new* loop,
-    # so they differ. Patching it here (inside the running loop) guarantees
-    # session tasks are created on the correct loop.
+    # Patch the app loop to ensure session tasks use the correct running event loop
     app.loop = asyncio.get_running_loop()
 
     try:
@@ -20,9 +16,11 @@ async def anony_boot():
         LOGGER.error(f"Failed to start: {ex}")
         return
 
+    # Dynamically import all modules defined in ALL_MODULES
     for all_module in ALL_MODULES:
         importlib.import_module("dixitabot.modules." + all_module)
 
+    # Start the web server if enabled in the configuration
     from config import WEB_SERVICE
     if WEB_SERVICE:
         from dixitabot.web import start_web_server
@@ -32,6 +30,8 @@ async def anony_boot():
     await idle()
 
     LOGGER.info("Stopping dixitabot Bot...")
+
+    # Gracefully close database connections
     try:
         mongo.close()
         LOGGER.info("MongoDB connection closed.")
@@ -44,7 +44,6 @@ async def anony_boot():
             LOGGER.info("Redis connection closed.")
         except Exception:
             pass
-
 
 if __name__ == "__main__":
     try:

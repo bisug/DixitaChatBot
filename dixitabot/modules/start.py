@@ -1,12 +1,9 @@
-
-
 import asyncio
 import random
 
 from pyrogram import filters, Client
 from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardMarkup, Message
-
 
 from dixitabot import app
 from dixitabot.database.chats import add_served_chat
@@ -23,10 +20,11 @@ from dixitabot.modules.helpers import (
     START,
 )
 
-
 @app.on_message(filters.command(["start", "aistart"]))
 async def start(_, m: Message):
+    """Handles the /start command, displaying a welcome message and tracking the user/chat."""
     if m.chat.type == ChatType.PRIVATE:
+        # Personal welcome message for users in private messages
         await m.reply_photo(
             photo=random.choice(IMG),
             caption=f"<b>Hey, I am {app.name}</b>\n<b>An AI based chatbot.</b>\n<b>──────────────</b>\n<b>Usage /chatbot [on/off]</b>\n<b>||Hit help button for help||</b>",
@@ -34,6 +32,7 @@ async def start(_, m: Message):
         )
         await add_served_user(m.from_user.id)
     else:
+        # Generic welcome message for groups
         await m.reply_photo(
             photo=random.choice(IMG),
             caption=START,
@@ -41,17 +40,19 @@ async def start(_, m: Message):
         )
         await add_served_chat(m.chat.id)
 
-
 @app.on_message(filters.command("help"))
 async def help(client: Client, m: Message):
+    """Provides usage instructions for the bot's features."""
     if m.chat.type == ChatType.PRIVATE:
-        hmm = await m.reply_photo(
+        # Full help guide for private messages
+        await m.reply_photo(
             photo=random.choice(IMG),
             caption=HELP_READ,
             reply_markup=InlineKeyboardMarkup(HELP_BTN),
         )
         await add_served_user(m.from_user.id)
     else:
+        # Encourages group members to check help in private messages
         await m.reply_photo(
             photo=random.choice(IMG),
             caption="<b>Hey, PM me for help commands!</b>",
@@ -59,17 +60,17 @@ async def help(client: Client, m: Message):
         )
         await add_served_chat(m.chat.id)
 
-
 @app.on_message(filters.command("repo"))
 async def repo(_, m: Message):
+    """Responds with the source code link for the bot."""
     await m.reply_text(
         text=SOURCE_READ,
         reply_markup=InlineKeyboardMarkup(CLOSE_BTN),
         disable_web_page_preview=True,
     )
 
-
 @app.on_message(filters.new_chat_members)
 async def welcome(_, m: Message):
+    """Welcomes new members joined to the group chat with a photo and start message."""
     for member in m.new_chat_members:
         await m.reply_photo(photo=random.choice(IMG), caption=START)
