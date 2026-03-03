@@ -29,7 +29,7 @@ async def start(_, m: Message):
     if m.chat.type == ChatType.PRIVATE:
         await m.reply_photo(
             photo=random.choice(IMG),
-            caption=f"<b>๏ ʜᴇʏ, ɪ ᴀᴍ {app.name}</b>\n<b>➻ ᴀɴ ᴀɪ ʙᴀsᴇᴅ ᴄʜᴀᴛʙᴏᴛ.</b>\n<b>──────────────</b>\n<b>➻ ᴜsᴀɢᴇ /chatbot [ᴏɴ/ᴏғғ]</b>\n<b>||๏ ʜɪᴛ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ғᴏʀ ʜᴇʟᴘ||</b>",
+            caption=f"<b>Hey, I am {app.name}</b>\n<b>An AI based chatbot.</b>\n<b>──────────────</b>\n<b>Usage /chatbot [on/off]</b>\n<b>||Hit help button for help||</b>",
             reply_markup=InlineKeyboardMarkup(DEV_OP),
         )
         await add_served_user(m.from_user.id)
@@ -54,7 +54,7 @@ async def help(client: Client, m: Message):
     else:
         await m.reply_photo(
             photo=random.choice(IMG),
-            caption="<b>ʜᴇʏ, ᴘᴍ ᴍᴇ ғᴏʀ ʜᴇʟᴘ ᴄᴏᴍᴍᴀɴᴅs!</b>",
+            caption="<b>Hey, PM me for help commands!</b>",
             reply_markup=InlineKeyboardMarkup(HELP_BUTN),
         )
         await add_served_chat(m.chat.id)
