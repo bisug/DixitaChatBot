@@ -7,36 +7,36 @@ from dixitabot import app
 
 DEV_OP = [
     [
-        InlineKeyboardButton(text="🥀 ᴏᴡɴᴇʀ 🥀", user_id=OWNER, style=ButtonStyle.PRIMARY),
-        InlineKeyboardButton(text="✨ ꜱᴜᴘᴘᴏʀᴛ ✨", url=f"https://t.me/{SUPPORT_GRP}", style=ButtonStyle.PRIMARY),
+        InlineKeyboardButton(text="Owner", user_id=OWNER, style=ButtonStyle.PRIMARY),
+        InlineKeyboardButton(text="Support", url=f"https://t.me/{SUPPORT_GRP}", style=ButtonStyle.PRIMARY),
     ],
     [
         InlineKeyboardButton(
-            text="✦ ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ ✦",
+            text="Add Me Baby",
             url=f"https://t.me/{app.username}?startgroup=true",
             style=ButtonStyle.SUCCESS
         ),
     ],
     [
-        InlineKeyboardButton(text="« ʜᴇʟᴘ »", callback_data="HELP", style=ButtonStyle.PRIMARY),
+        InlineKeyboardButton(text="Help", callback_data="HELP", style=ButtonStyle.PRIMARY),
     ],
     [
-       # InlineKeyboardButton(text="❄️ sᴏᴜʀᴄᴇ ❄️", callback_data="SOURCE", style=ButtonStyle.PRIMARY),
-        InlineKeyboardButton(text="☁️ ᴀʙᴏᴜᴛ ☁️", callback_data="ABOUT", style=ButtonStyle.DANGER),
+       # InlineKeyboardButton(text="Source", callback_data="SOURCE", style=ButtonStyle.PRIMARY),
+        InlineKeyboardButton(text="About", callback_data="ABOUT", style=ButtonStyle.DANGER),
     ],
 ]
 
 PNG_BTN = [
     [
         InlineKeyboardButton(
-            text="😍 ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ 😍",
+            text="Add Me Baby",
             url=f"https://t.me/{app.username}?startgroup=true",
             style=ButtonStyle.SUCCESS
         ),
     ],
     [
         InlineKeyboardButton(
-            text="⦿ ᴄʟᴏsᴇ ⦿",
+            text="Close",
             callback_data="CLOSE",
             style=ButtonStyle.DANGER
         ),
@@ -46,64 +46,64 @@ PNG_BTN = [
 
 BACK = [
     [
-        InlineKeyboardButton(text="⦿ ʙᴀᴄᴋ ⦿", callback_data="BACK", style=ButtonStyle.DEFAULT),
+        InlineKeyboardButton(text="Back", callback_data="BACK", style=ButtonStyle.DEFAULT),
     ],
 ]
 
 
 HELP_BTN = [
     [
-        InlineKeyboardButton(text="🐳 ᴄʜᴀᴛʙᴏᴛ 🐳", callback_data="CHATBOT_CMD", style=ButtonStyle.PRIMARY),
-        InlineKeyboardButton(text="🎄 ᴛᴏᴏʟs 🎄", callback_data="TOOLS_DATA", style=ButtonStyle.PRIMARY),
+        InlineKeyboardButton(text="Chatbot", callback_data="CHATBOT_CMD", style=ButtonStyle.PRIMARY),
+        InlineKeyboardButton(text="Tools", callback_data="TOOLS_DATA", style=ButtonStyle.PRIMARY),
     ],
     [
-        InlineKeyboardButton(text="⦿ ʙᴀᴄᴋ ⦿", callback_data="BACK", style=ButtonStyle.DEFAULT),
-        InlineKeyboardButton(text="⦿ ᴄʟᴏsᴇ ⦿", callback_data="CLOSE", style=ButtonStyle.DANGER),
+        InlineKeyboardButton(text="Back", callback_data="BACK", style=ButtonStyle.DEFAULT),
+        InlineKeyboardButton(text="Close", callback_data="CLOSE", style=ButtonStyle.DANGER),
     ],
 ]
 
 
 CLOSE_BTN = [
     [
-        InlineKeyboardButton(text="⦿ ᴄʟᴏsᴇ ⦿", callback_data="CLOSE", style=ButtonStyle.DANGER),
+        InlineKeyboardButton(text="Close", callback_data="CLOSE", style=ButtonStyle.DANGER),
     ],
 ]
 
 
 CHATBOT_ON = [
     [
-        InlineKeyboardButton(text="ᴇɴᴀʙʟᴇ", callback_data=f"addchat", style=ButtonStyle.SUCCESS),
-        InlineKeyboardButton(text="ᴅɪsᴀʙʟᴇ", callback_data=f"rmchat", style=ButtonStyle.DANGER),
+        InlineKeyboardButton(text="Enable", callback_data=f"addchat", style=ButtonStyle.SUCCESS),
+        InlineKeyboardButton(text="Disable", callback_data=f"rmchat", style=ButtonStyle.DANGER),
     ],
 ]
 
 
 MUSIC_BACK_BTN = [
     [
-        InlineKeyboardButton(text="sᴏᴏɴ", callback_data=f"soom", style=ButtonStyle.PRIMARY),
+        InlineKeyboardButton(text="Soon", callback_data=f"soom", style=ButtonStyle.PRIMARY),
     ],
 ]
 
 S_BACK = [
     [
-        InlineKeyboardButton(text="⦿ ʙᴀᴄᴋ ⦿", callback_data="SBACK", style=ButtonStyle.DEFAULT),
-        InlineKeyboardButton(text="⦿ ᴄʟᴏsᴇ ⦿", callback_data="CLOSE", style=ButtonStyle.DANGER),
+        InlineKeyboardButton(text="Back", callback_data="SBACK", style=ButtonStyle.DEFAULT),
+        InlineKeyboardButton(text="Close", callback_data="CLOSE", style=ButtonStyle.DANGER),
     ],
 ]
 
 
 CHATBOT_BACK = [
     [
-        InlineKeyboardButton(text="⦿ ʙᴀᴄᴋ ⦿", callback_data="CHATBOT_BACK", style=ButtonStyle.DEFAULT),
-        InlineKeyboardButton(text="⦿ ᴄʟᴏsᴇ ⦿", callback_data="CLOSE", style=ButtonStyle.DANGER),
+        InlineKeyboardButton(text="Back", callback_data="CHATBOT_BACK", style=ButtonStyle.DEFAULT),
+        InlineKeyboardButton(text="Close", callback_data="CLOSE", style=ButtonStyle.DANGER),
     ],
 ]
 
 
 HELP_START = [
     [
-        InlineKeyboardButton(text="« ʜᴇʟᴘ »", callback_data="HELP", style=ButtonStyle.PRIMARY),
-        InlineKeyboardButton(text="🐳 ᴄʟᴏsᴇ 🐳", callback_data="CLOSE", style=ButtonStyle.DANGER),
+        InlineKeyboardButton(text="Help", callback_data="HELP", style=ButtonStyle.PRIMARY),
+        InlineKeyboardButton(text="Close", callback_data="CLOSE", style=ButtonStyle.DANGER),
     ],
 ]
 
@@ -111,24 +111,24 @@ HELP_START = [
 HELP_BUTN = [
     [
         InlineKeyboardButton(
-            text="« ʜᴇʟᴘ »", url=f"https://t.me/{app.username}?start=help", style=ButtonStyle.PRIMARY
+            text="Help", url=f"https://t.me/{app.username}?start=help", style=ButtonStyle.PRIMARY
         ),
-        InlineKeyboardButton(text="⦿ ᴄʟᴏsᴇ ⦿", callback_data="CLOSE", style=ButtonStyle.DANGER),
+        InlineKeyboardButton(text="Close", callback_data="CLOSE", style=ButtonStyle.DANGER),
     ],
 ]
 
 
 ABOUT_BTN = [
     [
-        InlineKeyboardButton(text="🎄 sᴜᴘᴘᴏʀᴛ 🎄", url=f"https://t.me/{SUPPORT_GRP}", style=ButtonStyle.PRIMARY),
-        InlineKeyboardButton(text="« ʜᴇʟᴘ »", callback_data="HELP", style=ButtonStyle.PRIMARY),
+        InlineKeyboardButton(text="Support", url=f"https://t.me/{SUPPORT_GRP}", style=ButtonStyle.PRIMARY),
+        InlineKeyboardButton(text="Help", callback_data="HELP", style=ButtonStyle.PRIMARY),
     ],
     [
-        InlineKeyboardButton(text="🍾 ᴏᴡɴᴇʀ 🍾", user_id=OWNER, style=ButtonStyle.PRIMARY),
-     #   InlineKeyboardButton(text="❄️ sᴏᴜʀᴄᴇ ❄️", callback_data="SOURCE", style=ButtonStyle.PRIMARY),
+        InlineKeyboardButton(text="Owner", user_id=OWNER, style=ButtonStyle.PRIMARY),
+     #   InlineKeyboardButton(text="Source", callback_data="SOURCE", style=ButtonStyle.PRIMARY),
     ],
     [
-        InlineKeyboardButton(text="🐳 ᴜᴘᴅᴀᴛᴇs 🐳", url=f"https://t.me/{UPDATE_CHNL}", style=ButtonStyle.PRIMARY),
-        InlineKeyboardButton(text="⦿ ʙᴀᴄᴋ ⦿", callback_data="BACK", style=ButtonStyle.DEFAULT),
+        InlineKeyboardButton(text="Updates", url=f"https://t.me/{UPDATE_CHNL}", style=ButtonStyle.PRIMARY),
+        InlineKeyboardButton(text="Back", callback_data="BACK", style=ButtonStyle.DEFAULT),
     ],
 ]

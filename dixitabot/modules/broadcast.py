@@ -34,7 +34,7 @@ async def send_msg(user_id, message: Message):
 @app.on_message(filters.command("br"))
 async def broadcast(_, message: Message):
     if not message.reply_to_message:
-        await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴛᴏ ʙʀᴏᴀᴅᴄᴀsᴛ ɪᴛ.")
+        await message.reply_text("Reply to a message to broadcast it.")
         return    
     
     all_chats = await get_served_chats() or []
@@ -75,11 +75,11 @@ async def broadcast(_, message: Message):
         
     if failed_users == 0 and failed_chats == 0:
         await message.reply_text(
-            f"<b>sᴜᴄᴄᴇssғᴜʟʟʏ ʙʀᴏᴀᴅᴄᴀsᴛɪɴɢ ✅</b>\n\n<b>sᴇɴᴛ ᴍᴇssᴀɢᴇ ᴛᴏ</b> <code>{done_chats}</code> <b>ᴄʜᴀᴛs ᴀɴᴅ</b> <code>{done_users}</code> <b>ᴜsᴇʀs</b>",
+            f"<b>Successfully broadcasting</b>\n\n<b>Sent message to</b> <code>{done_chats}</code> <b>chats and</b> <code>{done_users}</code> <b>users</b>",
         )
     else:
         await message.reply_text(
-            f"<b>sᴜᴄᴄᴇssғᴜʟʟʏ ʙʀᴏᴀᴅᴄᴀsᴛɪɴɢ ✅</b>\n\n<b>sᴇɴᴛ ᴍᴇssᴀɢᴇ ᴛᴏ</b> <code>{done_chats}</code> <b>ᴄʜᴀᴛs</b> <code>{done_users}</code> <b>ᴜsᴇʀs</b>\n\n<b>ɴᴏᴛᴇ:-</b> <code>ᴅᴜᴇ ᴛᴏ sᴏᴍᴇ ɪssᴜᴇ ᴄᴀɴ'ᴛ ᴀʙʟᴇ ᴛᴏ ʙʀᴏᴀᴅᴄᴀsᴛ</code> <code>{failed_users}</code> <b>ᴜsᴇʀs ᴀɴᴅ</b> <code>{failed_chats}</code> <b>ᴄʜᴀᴛs</b>",
+            f"<b>Successfully broadcasting</b>\n\n<b>Sent message to</b> <code>{done_chats}</code> <b>chats</b> <code>{done_users}</code> <b>users</b>\n\n<b>Note:</b> <code>Due to some issue can't able to broadcast</code> <code>{failed_users}</code> <b>users and</b> <code>{failed_chats}</code> <b>chats</b>",
         )
 
 
@@ -127,5 +127,5 @@ async def announced(_, message: Message):
             failed_user += 1
 
     await message.reply_text(
-        "Bʀᴏᴀᴅᴄᴀsᴛ ᴄᴏᴍᴘʟᴇᴛᴇ. {} ɢʀᴏᴜᴘs ғᴀɪʟᴇᴅ ᴛᴏ ʀᴇᴄᴇɪᴠᴇ ᴛʜᴇ ᴍᴇssᴀɢᴇ, ᴘʀᴏʙᴀʙʟʏ ᴅᴜᴇ ᴛᴏ ʙᴇɪɴɢ ᴋɪᴄᴋᴇᴅ. {} ᴜsᴇʀs ғᴀɪʟᴇᴅ ᴛᴏ ʀᴇᴄᴇɪᴠᴇ ᴛʜᴇ ᴍᴇssᴀɢᴇ, ᴘʀᴏʙᴀʙʟʏ ᴅᴜᴇ ᴛᴏ ʙᴇɪɴɢ ʙᴀɴɴᴇᴅ.".format(failed, failed_user)
+        "Broadcast complete. {} groups failed to receive the message, probably due to being kicked. {} users failed to receive the message, probably due to being banned.".format(failed, failed_user)
     )

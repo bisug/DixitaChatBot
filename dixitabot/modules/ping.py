@@ -23,7 +23,7 @@ async def ping(_, message: Message):
     start = datetime.now()
     loda = await message.reply_photo(
         photo="https://graph.org/file/210751796ff48991b86a3.jpg",
-        caption="ᴘɪɴɢɪɴɢ...",
+        caption="Pinging...",
     )
     
     # Latency
@@ -51,15 +51,15 @@ async def ping(_, message: Message):
         pass
     
     await loda.edit_text(
-        text=f"""нey вαву!!
-{app.name} ιѕ alιve 🥀 αnd worĸιng ғιne!
+        text=f"""Hey Baby!!
+{app.name} is alive and working fine!
 
-<b>ʙᴏᴛ sᴛᴀᴛs:</b>
-➻ <b>ʟᴀᴛᴇɴᴄʏ:</b> <code>{ms}</code> ms
-➻ <b>ᴅʙ ʟᴀᴛᴇɴᴄʏ:</b> <code>{db_ms}</code> ms
-➻ <b>ᴜᴘᴛɪᴍᴇ:</b> <code>{uptime_str}</code>
-➻ <b>ʀᴀᴍ:</b> <code>{ram}</code> MB
-➻ <b>ᴄᴘᴜ:</b> <code>{cpu}</code>%""",
+<b>Bot stats:</b>
+<b>Latency:</b> <code>{ms}</code> ms
+<b>Db latency:</b> <code>{db_ms}</code> ms
+<b>Uptime:</b> <code>{uptime_str}</code>
+<b>Ram:</b> <code>{ram}</code> MB
+<b>Cpu:</b> <code>{cpu}</code>%""",
         reply_markup=InlineKeyboardMarkup(PNG_BTN),
     )
     if message.chat.type == ChatType.PRIVATE:

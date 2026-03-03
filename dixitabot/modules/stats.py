@@ -16,19 +16,19 @@ async def stats(cli: Client, message: Message):
     daxx_count = await mongo["DAXXDb"]["DAXX"].count_documents({})
     
     # Redis Stats
-    redis_status = "<b>✅ ᴏɴʟɪɴᴇ</b>" if redis_db and redis_db.ping() else "<b>❌ ᴏғғʟɪɴᴇ</b>"
+    redis_status = "<b>Online</b>" if redis_db and redis_db.ping() else "<b>Offline</b>"
     
     await message.reply_text(
-        f"""<b>OVERALL sᴛᴀᴛs ᴏғ {(await cli.get_me()).mention} :</b>
+        f"""<b>Overall stats of {(await cli.get_me()).mention} :</b>
 
-<b>ʙᴏᴛ'S ʀᴇᴀᴄʜ:</b>
-➻ <b>ᴄʜᴀᴛs :</b> <code>{chats}</code>
-➻ <b>ᴜsᴇʀs :</b> <code>{users}</code>
+<b>Bot's reach:</b>
+<b>Chats:</b> <code>{chats}</code>
+<b>Users:</b> <code>{users}</code>
 
-<b>ᴅᴀᴛᴀʙᴀsᴇ:</b>
-➻ <b>ʀᴇsᴘᴏɴsᴇs sᴀᴠᴇᴅ :</b> <code>{word_count}</code>
-➻ <b>ᴅɪsᴀʙʟᴇᴅ ᴄʜᴀᴛs :</b> <code>{daxx_count}</code>
+<b>Database:</b>
+<b>Responses saved:</b> <code>{word_count}</code>
+<b>Disabled chats:</b> <code>{daxx_count}</code>
 
-<b>ᴄᴀᴄʜᴇ:</b>
-➻ <b>sᴛᴀᴛᴜs :</b> {redis_status}"""
+<b>Cache:</b>
+<b>Status:</b> {redis_status}"""
     )
